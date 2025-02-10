@@ -34,19 +34,19 @@ public int getYear_of_Production()
 }
 public void setPlate_Number(String Plate_Num)
 {
-	
+	this.Plate_Number = Plate_Num;
 }
 public void setMake(String Make) 
 {
-	
+this.Make = Make;	
 }
 public void setModel(String Model)
 {
-	
+	this.Model = Model
 }
 public void setYear_Of_Production(int Year_of_Production)
 {
-	
+	this.Year_of_Production = Year_of_Production;
 }
 
 
