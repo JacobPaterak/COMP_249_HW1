@@ -1,10 +1,10 @@
 
 public class Vehicles 
 {
-private String Plate_Number;
-private String Make;
-private String Model;
-private int Year_of_Production;
+public String Plate_Number;
+public String Make;
+public String Model;
+public int Year_of_Production;
 
 public Vehicles()
 {
@@ -12,7 +12,9 @@ public Vehicles()
 }
 public Vehicles(String Make, String Model, int YOP)
 {
-	
+	this.Make = Make;
+	this.Model = Model;
+	this.Year_of_Production = YOP;
 }
 public String getPlate_Number()
 {
