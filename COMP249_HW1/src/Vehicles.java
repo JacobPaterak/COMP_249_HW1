@@ -10,7 +10,7 @@ public Vehicles()
 {
 	
 }
-public Vehicles(String PN, String Make, String Model, int YOP)
+public Vehicles(String Make, String Model, int YOP)
 {
 	
 }
@@ -42,11 +42,21 @@ this.Make = Make;
 }
 public void setModel(String Model)
 {
-	this.Model = Model
+	this.Model = Model;
 }
 public void setYear_Of_Production(int Year_of_Production)
 {
 	this.Year_of_Production = Year_of_Production;
+}
+public void Copy(Vehicles obj)
+{
+	this.Make = obj.getMake();
+	this.Model = obj.getModel();
+	this.Year_of_Production = obj.getYear_of_Production();
+}
+public String toString()
+{
+	return "The model is " + this.Model + " the make is " +  this.Make + " the year of production is " + this.Year_of_Production;
 }
 
 
