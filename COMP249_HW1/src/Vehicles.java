@@ -60,6 +60,10 @@ public String toString()
 {
 	return "The model is " + this.Model + " the make is " +  this.Make + " the year of production is " + this.Year_of_Production;
 }
-
-
+public boolean equals(Vehicles obj)
+{
+	
+	
+	return true;
+}
 }
