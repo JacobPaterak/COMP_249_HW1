@@ -1,4 +1,3 @@
-
 public class Cars extends Vehicles
 {
 public int Max_people;
