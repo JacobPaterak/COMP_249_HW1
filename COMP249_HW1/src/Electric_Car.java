@@ -6,14 +6,12 @@ public class Electric_Car extends Cars
 	public Electric_Car()
 	{
 		super();	
+		this.Max_Autonomy_Range = 15.0;
 		
 	}
 	public Electric_Car(String Make, String Model, int YOP,int Max_People ,double Max_Range)
 	{
-		this.Make = Make;
-		this.Model = Model;
-		this.Year_of_Production = YOP;
-		this.Max_people = Max_People;
+		super(Make,Model,YOP,Max_People);
 		this.Max_Autonomy_Range = Max_Range;
 	}
 	public void setMax_Range(double Max_Range)

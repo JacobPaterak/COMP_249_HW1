@@ -28,6 +28,7 @@ public class Driver {
 			System.out.println("(3) Update a vehicle information");
 			System.out.println("(4) List all vehicles by category");
 			System.out.println("(5) Exit");
+			Choice2 = kb.nextInt();
 			switch(Choice2)
 			{
 				case 1:
@@ -37,16 +38,63 @@ public class Driver {
 				case 5:
 					return;
 			}
+			Choice2 = 0;
 			case 2:
+				System.out.println("(1) Add a client");
+				System.out.println("(2) Edit a client");
+				System.out.println("(3) Delete a client");
+				System.out.println("(4) Exit");
+				Choice2 = kb.nextInt();
+				switch(Choice2)
+				{
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+						return;
+				}
 			case 3:
+				System.out.println("(1) Lease a vehicle to a client");
+				System.out.println("(2) Return a vehicle from a client");
+				System.out.println("(3) Show all vehicles leased by a client");
+				System.out.println("(4) Show all leased vehicles");
+				System.out.println("(5) Exit");
+				switch(Choice2)
+				{
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+					case 5:
+						return;
+				}
 			case 4:
-			case 5:
+				System.out.println("(1) Display the truck with the largest capacity");
+				System.out.println("(2) Create a copy of the electric trucks array");
+				System.out.println("(3) Exit");
+				switch(Choice2)
+				{
+					case 1:
+					case 2:
+					case 3:
+						return;
+				}
 		}
 		}
 		while(choice!=5);
+		if(choice == 5)
+			System.out.println("Thank you for using RoyalRentals");
 		
 		
 		
+		
+	}
+	public static void getLargestTruck()
+	{
+		
+	}
+	public static void copyVehicles()
+	{
 		
 	}
 

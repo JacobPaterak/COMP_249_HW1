@@ -5,18 +5,13 @@ public int Max_people;
 
 public Cars()
 {
-	this.Plate_Number = "yes";
-	this.Make = "Yes";
-	this.Model = " yes";
-	this.Year_of_Production = 1990;
+	super();
 	this.Max_people = 5;
 	
 }
 public Cars(String Make , String Model, int YOP,int max_peaople) 
 {
-	this.Make = Make;
-	this.Model = Model;
-	this.Year_of_Production = YOP;
+	super(Make,Model,YOP);
 	this.Max_people = Max_people;
 }
 public void setMax_People(int max_people)

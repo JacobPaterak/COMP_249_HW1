@@ -8,7 +8,9 @@ public int Year_of_Production;
 
 public Vehicles()
 {
-	
+	this.Make = "Yes";
+	this.Model = "No";
+	this.Year_of_Production = 1996;
 }
 public Vehicles(String Make, String Model, int YOP)
 {
@@ -63,9 +65,9 @@ public String toString()
 public boolean equals(Vehicles obj)
 {
 	
-	if(this.Make == obj.getMake())
+	if(this.Make.equals( obj.getMake()))
 	{
-		if(this.Model == obj.getModel())
+		if(this.Model.equals(obj.getModel()))
 		{
 			if(this.Year_of_Production == obj.getYear_of_Production())
 			{
