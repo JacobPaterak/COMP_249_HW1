@@ -7,6 +7,7 @@ public class Driver {
 		Vehicles v1 = new Vehicles();
 		Cars c1 = new Cars();
 		int choice=0;
+		Gasoline_Car gc1 = new Gasoline_Car();
 		
 		
 		

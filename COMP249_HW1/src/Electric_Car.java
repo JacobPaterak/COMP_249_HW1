@@ -6,6 +6,7 @@ public class Electric_Car extends Cars
 	public Electric_Car()
 	{
 		super();	
+		
 	}
 	public Electric_Car(String Make, String Model, int YOP,int Max_People ,double Max_Range)
 	{

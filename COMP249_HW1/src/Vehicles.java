@@ -63,7 +63,19 @@ public String toString()
 public boolean equals(Vehicles obj)
 {
 	
+	if(this.Make == obj.getMake())
+	{
+		if(this.Model == obj.getModel())
+		{
+			if(this.Year_of_Production == obj.getYear_of_Production())
+			{
+				return true;
+			}
+			return false;
+		}
+		return false;
 	
-	return true;
+	}
+	return false;
 }
 }
