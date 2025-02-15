@@ -7,7 +7,7 @@ public class Driver {
 		Vehicles v1 = new Vehicles();
 		Cars c1 = new Cars();
 		int choice=0;
-
+		int counter = 0;
 		
 		
 		
