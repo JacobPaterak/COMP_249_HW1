@@ -7,7 +7,7 @@ public class Driver {
 		Vehicles v1 = new Vehicles();
 		Cars c1 = new Cars();
 		int choice=0;
-		int counter = 0;
+		int Choice2 = 0;
 		
 		
 		
@@ -23,6 +23,20 @@ public class Driver {
 		switch(choice)
 		{
 			case 1:
+			System.out.println("(1) Add a vehicle");
+			System.out.println("(2) Delete a vehicle");
+			System.out.println("(3) Update a vehicle information");
+			System.out.println("(4) List all vehicles by category");
+			System.out.println("(5) Exit");
+			switch(Choice2)
+			{
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+					return;
+			}
 			case 2:
 			case 3:
 			case 4:
