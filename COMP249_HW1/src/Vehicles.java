@@ -52,7 +52,7 @@ public void setYear_Of_Production(int Year_of_Production)
 {
 	this.Year_of_Production = Year_of_Production;
 }
-public void Copy(Vehicles obj)
+public Vehicles(Vehicles obj)
 {
 	this.Make = obj.getMake();
 	this.Model = obj.getModel();
@@ -62,22 +62,12 @@ public String toString()
 {
 	return "The model is " + this.Model + " the make is " +  this.Make + " the year of production is " + this.Year_of_Production;
 }
-public boolean equals(Vehicles obj)
+public boolean equals(Object obj)
 {
-	
-	if(this.Make.equals( obj.getMake()))
-	{
-		if(this.Model.equals(obj.getModel()))
-		{
-			if(this.Year_of_Production == obj.getYear_of_Production())
-			{
-				return true;
-			}
-			return false;
-		}
+	if(obj == null || !(obj instanceof Vehicles))
 		return false;
+	Vehicles obj2 = (Vehicles) obj;
+	return this.Make.equals(obj2.Make) && this.Model.equals(obj2.Model) && this.Year_of_Production == obj2.Year_of_Production;
 	
-	}
-	return false;
 }
 }

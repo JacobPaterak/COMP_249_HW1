@@ -18,8 +18,26 @@ public class Electric_Car extends Cars
 	{
 		this.Max_Autonomy_Range = Max_Range;
 	}
-	public double setMax_People()
+	public double getMax_Autonomy_Range()
 	{
 		return this.Max_Autonomy_Range;
 	}
+	public String toString()
+	{
+		return super.toString() + this.Max_Autonomy_Range;
+	}
+	public Electric_Car(Electric_Car obj)
+	{
+		super(obj);
+		this.Max_Autonomy_Range = obj.getMax_Autonomy_Range();
+	}
+	public boolean equals(Object obj)
+	{
+		if(obj == null || !(obj instanceof Electric_Car))
+			return false;
+		Electric_Car obj2 = (Electric_Car) obj;
+		return this.Make.equals(obj2.Make) && this.Model.equals(obj2.Model) && this.Year_of_Production == obj2.Year_of_Production && this.Max_people == obj2.Max_people && this.Max_Autonomy_Range == obj2.Max_Autonomy_Range;
+		
+	}
 }
+

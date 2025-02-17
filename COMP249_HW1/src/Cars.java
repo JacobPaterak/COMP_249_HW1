@@ -22,12 +22,24 @@ public int getMax_People()
 {
 	return this.Max_people;
 }
-public void Copy(Cars obj)
+public Cars(Cars obj)
 {
-	this.Make = obj.getMake();
-	this.Model = obj.getModel();
-	this.Year_of_Production = obj.getYear_of_Production();
+	super(obj);
 	this.Max_people = obj.getMax_People();
+}
+
+public String toString()
+{
+	return super.toString() + this.Max_people;
+
+}
+public boolean equals(Object obj)
+{
+	if(obj == null || !(obj instanceof Cars))
+		return false;
+	Cars obj2 = (Cars) obj;
+	return this.Make.equals(obj2.Make) && this.Model.equals(obj2.Model) && this.Year_of_Production == obj2.Year_of_Production && this.Max_people == obj2.Max_people;
+	
 }
 
 
