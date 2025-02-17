@@ -2,6 +2,8 @@
 public class Electric_Car extends Cars
 {
 	private double Max_Autonomy_Range;
+	private int plate_number;
+	private static int counter;
 	
 	public Electric_Car()
 	{
@@ -30,6 +32,12 @@ public class Electric_Car extends Cars
 	{
 		super(obj);
 		this.Max_Autonomy_Range = obj.getMax_Autonomy_Range();
+	}
+	public String getPlate_Num()
+	{
+		this.plate_number = 1000 + counter;
+		counter++;
+		return "EC" + this.plate_number;
 	}
 	public boolean equals(Object obj)
 	{

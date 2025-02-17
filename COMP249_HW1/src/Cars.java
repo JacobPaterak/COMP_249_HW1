@@ -41,6 +41,10 @@ public boolean equals(Object obj)
 	return this.Make.equals(obj2.Make) && this.Model.equals(obj2.Model) && this.Year_of_Production == obj2.Year_of_Production && this.Max_people == obj2.Max_people;
 	
 }
+public void Plate_Number()
+{
+	
+}
 
 
 }

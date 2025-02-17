@@ -8,6 +8,10 @@ public class Driver {
 		Cars c1 = new Cars();
 		int choice=0;
 		int Choice2 = 0;
+		Gasoline_Car gc1 = new Gasoline_Car();
+		Gasoline_Car gc2 = new Gasoline_Car();
+		System.out.println(gc1.getPlate_Num());
+		System.out.println(gc2.getPlate_Num());
 		
 		
 		

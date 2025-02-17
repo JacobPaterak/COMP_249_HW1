@@ -1,6 +1,8 @@
 
 public class Gasoline_Car extends Cars 
 {
+	private int plate_number;
+	private static int counter = 1;
 	public Gasoline_Car()
 	{
 		super();
@@ -13,6 +15,17 @@ public class Gasoline_Car extends Cars
 	{
 		return super.toString();
 	}
+//	public void setPlate_Num()
+//	{
+//		
+//	}
+	public String getPlate_Num()
+	{
+		this.plate_number = 1000 + counter;
+		counter++;
+		return "GC" + this.plate_number;
+	}
+	
 	public boolean equals(Object obj)
 	{
 		if(obj == null || !(obj instanceof Gasoline_Car))
