@@ -13,7 +13,9 @@ public class Driver {
 		System.out.println(gc1.getPlate_Num());
 		System.out.println(gc2.getPlate_Num());
 		Gasoline_Car[] gc = new Gasoline_Car[5];
-		Electric_Car[] ec = new Electric_Car[5];	
+		Electric_Car[] ec = new Electric_Car[5];
+		
+		
 		
 		
 		
@@ -30,7 +32,6 @@ public class Driver {
 		{
 			case 1:
 			System.out.println("(1) Add a vehicle");
-			
 			System.out.println("(2) Delete a vehicle");
 			System.out.println("(3) Update a vehicle information");
 			System.out.println("(4) List all vehicles by category");
@@ -55,6 +56,7 @@ public class Driver {
 				switch(Choice2)
 				{
 					case 1:
+						CLients josh = new CLients();
 					case 2:
 					case 3:
 					case 4:

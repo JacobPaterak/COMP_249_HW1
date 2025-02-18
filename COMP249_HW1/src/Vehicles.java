@@ -1,10 +1,10 @@
 
 public class Vehicles 
 {
-public String Plate_Number;
-public String Make;
-public String Model;
-public int Year_of_Production;
+private String Plate_Number;
+private String Make;
+private String Model;
+private int Year_of_Production;
 
 public Vehicles()
 {

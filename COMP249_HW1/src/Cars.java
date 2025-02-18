@@ -1,7 +1,7 @@
 
 public class Cars extends Vehicles
 {
-public int Max_people;
+private int Max_people;
 
 public Cars()
 {
@@ -38,7 +38,8 @@ public boolean equals(Object obj)
 	if(obj == null || !(obj instanceof Cars))
 		return false;
 	Cars obj2 = (Cars) obj;
-	return this.Make.equals(obj2.Make) && this.Model.equals(obj2.Model) && this.Year_of_Production == obj2.Year_of_Production && this.Max_people == obj2.Max_people;
+	
+	return this.getMake().equals(obj2.getMake()) && this.getModel().equals(obj2.getModel()) && this.getYear_of_Production() == obj2.getYear_of_Production() && this.Max_people == obj2.Max_people;
 	
 }
 public void Plate_Number()

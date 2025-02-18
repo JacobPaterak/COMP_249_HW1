@@ -44,7 +44,7 @@ public class Electric_Car extends Cars
 		if(obj == null || !(obj instanceof Electric_Car))
 			return false;
 		Electric_Car obj2 = (Electric_Car) obj;
-		return this.Make.equals(obj2.Make) && this.Model.equals(obj2.Model) && this.Year_of_Production == obj2.Year_of_Production && this.Max_people == obj2.Max_people && this.Max_Autonomy_Range == obj2.Max_Autonomy_Range;
+		return this.getMake().equals(obj2.getMake()) && this.getModel().equals(obj2.getModel()) && this.getYear_of_Production() == obj2.getYear_of_Production() && this.getMax_People() == obj2.getMax_People() && this.Max_Autonomy_Range == obj2.Max_Autonomy_Range;
 		
 	}
 }
