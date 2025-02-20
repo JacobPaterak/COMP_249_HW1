@@ -35,16 +35,16 @@ public class Driver {
 
 			switch(choice){
 				case 1: 
-				System.out.println("(1) Add a vehicle");
-				System.out.println("(2) Delete a vehicle");
-				System.out.println("(3) Update a vehicle information");
-				System.out.println("(4) List all vehicles by category");
-				System.out.println("(5) Exit");
+					System.out.println("(1) Add a vehicle");
+					System.out.println("(2) Delete a vehicle");
+					System.out.println("(3) Update a vehicle information");
+					System.out.println("(4) List all vehicles by category");
+					System.out.println("(5) Exit");
 
 				Choice2 = scanner.nextInt();
 
 				switch(Choice2){ //Vehicle Management
-					case 1:
+					case 1: 
 					case 2:
 					case 3:
 					case 4:
@@ -110,6 +110,10 @@ public class Driver {
 	}
 
 
+
+
+
+
 	public static void getLargestTruck(){
 		
 	}
@@ -117,5 +121,63 @@ public class Driver {
 	public static void copyVehicles(){
 		
 	}
+
+
+	public static void addVehicle(Scanner scanner){
+		System.out.println("Select a vehicle type:");
+		System.out.println("1. Electric Car");
+		System.out.println("2. Gasoline Car");
+		System.out.println("3. Diesel Truck");
+		System.out.println("4. Electric Truck");
+
+		int choice = scanner.nextInt();
+
+		System.out.println("Enter make:");
+		String make = scanner.nextLine();
+
+		System.out.println("Enter model:");
+		String model = scanner.nextLine();
+
+		System.out.println("Enter year of production:");
+		int yop = scanner.nextInt();
+
+		switch(choice){
+			case 1:
+				System.out.println("Enter the maximum number of passengers");
+				int electricCarMaxPassengers = scanner.nextInt();
+
+				System.out.println("Enter the maximum autonomy range");
+				int electricCarMaxAutonomyRange = scanner.nextInt();
+
+				Electric_Car newElectric_Car = new Electric_Car(make, model, yop, electricCarMaxPassengers, electricCarMaxAutonomyRange);
+
+			case 2:
+				System.out.println("Enter the maximum number of passengers");
+				int gasolineCarMaxPassengers = scanner.nextInt();
+
+				Gasoline_Car newGasoline_Car = new Gasoline_Car(make, model, yop, gasolineCarMaxPassengers);
+
+			case 3:
+				System.out.println("Enter max weight capacity:");
+				int dieselTruckWeight = scanner.nextInt();
+				
+				System.out.println("Enter max fuel capacity:");
+				int dieselTruckFuelCapacity = scanner.nextInt();
+
+				Diesel_Truck newDiesel_Truck = new Diesel_Truck(make, model, yop, dieselTruckWeight, dieselTruckFuelCapacity);
+
+			case 4:
+				System.out.println("Enter max weight capacity:");
+				int electricTruckWeight = scanner.nextInt();
+				
+				System.out.println("Enter max fuel capacity:");
+				int electricTruckFuelCapacity = scanner.nextInt();
+
+				Electric_Truck newElectric_Truck = new Electric_Truck(make, model, yop, electricTruckWeight, electricTruckFuelCapacity);
+
+		}
+	}
+
+
 
 }
