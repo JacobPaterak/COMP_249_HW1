@@ -8,6 +8,8 @@ public class Electric_Truck extends Truck{
     //Default Constructor
     public Electric_Truck(){
         super();
+        this.maxAutonomyRange = 0.0;
+        this.plateNumber = "EC" + electricTruckCounter++;
     }
 
     //Parameterized Constructor
