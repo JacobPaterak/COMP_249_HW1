@@ -27,9 +27,9 @@ public class Cars extends Vehicles{
 		this.maxPassengers = obj.getMaxPassengers();
 	}
 
-	public String toString(){
-		return super.toString() + this.maxPassengers;
-
+	public String toString()
+	{
+		return super.toString() + " the Max amount of people is "+ this.Max_people;
 	}
 
 	public boolean equals(Object obj){
