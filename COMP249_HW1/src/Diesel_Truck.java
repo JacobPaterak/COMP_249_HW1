@@ -1,3 +1,4 @@
+package Vehicle;
 
 public class Diesel_Truck extends Truck{
     
