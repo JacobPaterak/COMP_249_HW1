@@ -13,8 +13,8 @@ public class Electric_Truck extends Truck{
     }
 
     //Parameterized Constructor
-    public Electric_Truck(String Make, String Model, int Year_of_Production, double max_weight_capacity, double maxAutonomyRange){
-        super(Make, Model, Year_of_Production, max_weight_capacity);
+    public Electric_Truck(String Make, String Model, int Year_of_Production, double maxWeightCapacity, double maxAutonomyRange){
+        super(Make, Model, Year_of_Production, maxWeightCapacity);
         this.maxAutonomyRange = maxAutonomyRange;
         this.plateNumber= "EC" + electricTruckCounter++;
     }
@@ -49,7 +49,7 @@ public class Electric_Truck extends Truck{
             return false;
         }
         Electric_Truck obj2 = (Electric_Truck) obj;
-        return this.getMake().equals(obj2.getMake()) && this.getModel().equals(obj2.getModel()) && this.getYear_of_Production() == obj2.getYear_of_Production() && this.getMax_weight_capacity() == obj2.getMax_weight_capacity() && this.getMaxAutonomyRange() == obj2.getMaxAutonomyRange();
+        return this.getMake().equals(obj2.getMake()) && this.getModel().equals(obj2.getModel()) && this.getYear_of_Production() == obj2.getYear_of_Production() && this.getMaxWeightCapacity() == obj2.getMaxWeightCapacity() && this.getMaxAutonomyRange() == obj2.getMaxAutonomyRange();
 
     }
 
