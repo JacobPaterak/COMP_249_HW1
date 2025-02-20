@@ -1,15 +1,22 @@
 package Client;
+
+import Vehicle.*;
+
+
 public class Clients
 {
     private String name;
     private  int id;
     private Vehicles[] vehicles = new Vehicles[1];
     private int counter = 0;
-
+    //Create client objeccts nnand store vehicles arrays inside
+//Ex Client josh = new CLient()
+//this.vehicles[] and we can put the adddition and subtraction of array size in here too
+//
     public Clients()
     {
-        this.name = "";
-        id++;
+      this.name = "";
+      id++;
     }
     public Clients(String name)
     {
@@ -36,9 +43,10 @@ public class Clients
     {
         return this.vehicles;
     }
-    public void setVehicles(int a,Vehicles veh)
+    public void setVehicles(Vehicles veh)
     {
-        this.vehicles[a] = veh;
+        this.vehicles[counter] = veh;
+        counter++;
     }
     public String toString()
     {

@@ -1,20 +1,25 @@
 package Driver;
+
 import java.util.Scanner;
+import Client.*;
+import Vehicle.*;
+
 public class Driver {
 
-	public static void main(String[] args)
-	{
+	public static int vehicleCount = 0;
+
+	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
-		int choice=0;
+		int choice = 0;
 		int Choice2 = 0;
 		Clients[] All_Clients = new Clients[1];
 		String name;
 		String Changes_Name;
 		int counter = 0;
-		int delete_index = 0;
 		int type = 0;
 		int index = 0;
-
+		Vehicles[] all_Vehicles = new Vehicles[10];
+		all_Vehicles[0] = new Gasoline_Car();
 
 
 		do {
@@ -26,8 +31,7 @@ public class Driver {
 			System.out.println("\t (4) Additional Operations");
 			System.out.println("\t (5) Quit");
 			choice = kb.nextInt();
-			switch(choice)
-			{
+			switch (choice) {
 				case 1:
 					System.out.println("(1) Add a vehicle");
 					System.out.println("(2) Delete a vehicle");
@@ -35,82 +39,12 @@ public class Driver {
 					System.out.println("(4) List all vehicles by category");
 					System.out.println("(5) Exit");
 					Choice2 = kb.nextInt();
-					switch(Choice2)
-					{
+					switch (Choice2) {
 						case 1:
-							System.out.println("To which client are we adding a vehicle to? ");
-							name = kb.next();
-							for(int i = 0; i < All_Clients.length; i++) {
-								if(All_Clients[i].getName().equals(name))
-								{
-									for (int j = 0; j < All_Clients.length; j++)
-									{
-										if (All_Clients[j] != null) {
-											if (All_Clients[j].getName().equals(name))
-												index = j;
-										}
-									}
-									System.out.println("Select the vehicle type");
-									System.out.println("(1) Gasoline Car");
-									System.out.println("(2) Electric Car");
-									System.out.println("(3) Electric Truck");
-									System.out.println("(4) Diesel Truck");
-									type = kb.nextInt();
-								}
-
-							}
-
-							switch(type)
-							{
-								case 1:
-									System.out.println("Please enter the vehicle's make");
-									String make = kb.next();
-									System.out.println("Please enter the vehicle's model");
-									String model = kb.next();
-									System.out.println("Please enter the vehicle's year of production");
-									int YOP = kb.nextInt();
-									System.out.println("Please enter the vehicle's maximum number of people");
-									int Max_People = kb.nextInt();
-									System.out.println(index);
-									All_Clients[index].setVehicles(index,new Gasoline_Car(make,model,YOP,Max_People));
-									index++;
-									break;
-								case 2:
-									System.out.println("Please enter the vehicle's make");
-									make = kb.next();
-									System.out.println("Please enter the vehicle's model");
-									model = kb.next();
-									System.out.println("Please enter the vehicle's year of production");
-									YOP = kb.nextInt();
-									System.out.println("Please enter the vehicle's maximum number of people");
-									Max_People = kb.nextInt();
-									System.out.println("Please enter the vehicle's maximum range");
-									double Max_Range = kb.nextDouble();
-									All_Clients[index].setVehicles(index,new Electric_Car(make,model,YOP,Max_People,Max_Range));
-									index++;
-									break;
-								case 3:
-
-									break;
-								case 4:
-									break;
-								default:
-									System.out.println("Invalid input");
-									break;
-							}
-
-
+							addVehicle(kb);
 							break;
 						case 2:
-
-							for(int i = 0; i < All_Clients.length; i++)
-								for(int f = 0; f < All_Clients[i].getArray().length; f++)
-									if (All_Clients[i] != null)
-									{
-										System.out.println(All_Clients[i].getVehicles(f));
-									}
-
-
+							deleteVehicle(kb, all_Vehicles);
 							break;
 						case 3:
 							break;
@@ -128,43 +62,23 @@ public class Driver {
 					System.out.println("(3) Delete a client");
 					System.out.println("(4) Exit");
 					Choice2 = kb.nextInt();
-					switch(Choice2)
-					{
+					switch (Choice2) {
 						case 1:
 							System.out.println("Please enter the client's name");
 							name = kb.next();
-							All_Clients[counter] = new Clients(name);
-							counter++;
-							System.out.println("Client added");
+							addClient(name, All_Clients, counter);
 							break;
 						case 2:
 							System.out.println("Please enter the client's name you wish to edit");
 							name = kb.next();
 							System.out.println("Please enter the client's new name");
 							Changes_Name = kb.next();
-							for(int i = 0; i < All_Clients.length; i++)
-								if(All_Clients[i] != null) {
-									if(All_Clients[i].getName().equals(Changes_Name))
-										All_Clients[i].setName(name);
-								}
+							editClient(All_Clients, name, Changes_Name);
 							break;
 						case 3:
 							System.out.println("Please enter the client's name you wish to delete");
 							name = kb.next();
-							for(int i = 0; i < All_Clients.length; i++)
-							{
-								if(All_Clients[i] != null) {
-									if (All_Clients[i].getName().equals(name)) {
-										delete_index = i;
-										All_Clients[i] = null;
-										System.out.println("Client deleted");
-									}
-								}
-							}
-							for(int i = delete_index; i < All_Clients.length-1; i++)
-								All_Clients[i] = All_Clients[i+1];
-
-
+							deleteClient(All_Clients, name);
 							break;
 						case 4:
 							break;
@@ -176,9 +90,28 @@ public class Driver {
 					System.out.println("(3) Show all vehicles leased by a client");
 					System.out.println("(4) Show all leased vehicles");
 					System.out.println("(5) Exit");
-					switch(Choice2)
-					{
+					switch (Choice2) {
 						case 1:
+							//Plate number
+							//Make sure vehicles is not already leased
+							System.out.println("To which client are we adding a vehicle to? ");
+							name = kb.next();
+							for (int i = 0; i < All_Clients.length; i++) {
+								if (All_Clients[i].getName().equals(name)) {
+									for (int j = 0; j < All_Clients.length; j++) {
+										if (All_Clients[j] != null) {
+											if (All_Clients[j].getName().equals(name))
+												index = j;
+										}
+									}
+								} else {
+									System.out.println("Client not found");
+								}
+							}
+							System.out.print("Enter the plate number of the vehicle you wish to lease");
+							String plate_number = kb.next();
+							leaseVehicle(index, plate_number, All_Clients, all_Vehicles);
+
 						case 2:
 						case 3:
 						case 4:
@@ -189,8 +122,7 @@ public class Driver {
 					System.out.println("(1) Display the truck with the largest capacity");
 					System.out.println("(2) Create a copy of the electric trucks array");
 					System.out.println("(3) Exit");
-					switch(Choice2)
-					{
+					switch (Choice2) {
 						case 1:
 						case 2:
 						case 3:
@@ -198,142 +130,167 @@ public class Driver {
 					}
 			}
 		}
-		while(choice!=5);
-		if(choice == 5)
+		while (choice != 5);
+		if (choice == 5) {
 			System.out.println("Thank you for using RoyalRentals");
+		}
+	}
 
+	public static void addClient(String name, Clients[] All_Clients, int counter) {
+		All_Clients[counter] = new Clients(name);
+		counter++;
+		System.out.println("Client added");
+	}
 
+	public static void editClient(Clients[] All_Clients, String name, String Changes_Name) {
+		for (int i = 0; i < All_Clients.length; i++)
+			if (All_Clients[i] != null) {
+				if (All_Clients[i].getName().equals(Changes_Name))
+					All_Clients[i].setName(name);
 
+			}
+	}
+
+	public static void deleteClient(Clients[] All_Clients, String name) {
+		int delete_index = 0;
+		for (int i = 0; i < All_Clients.length; i++) {
+			if (All_Clients[i] != null) {
+				if (All_Clients[i].getName().equals(name)) {
+					delete_index = i;
+					All_Clients[i] = null;
+					System.out.println("Client deleted");
+				}
+			}
+		}
+		for (int i = delete_index; i < All_Clients.length - 1; i++)
+			All_Clients[i] = All_Clients[i + 1];
+	}
+
+	public static void leaseVehicle(int index, String plate_number, Clients[] All_Clients, Vehicles[] All_Vehicles) {
+		for (int i = 0; i < All_Vehicles.length; i++) {
+			if (All_Vehicles[i].getPlate_Number().equals(plate_number) && All_Vehicles[i].getLeased() == false) {
+				All_Clients[index].setVehicles(All_Vehicles[i]);
+				All_Vehicles[i].setLeased(true);
+				System.out.println("Vehicle leased");
+				break;
+			}
+		}
+	}
+	public static void returnVehicle(int index, String plate_number, Clients[] All_Clients, Vehicles[] All_Vehicles)
+	{
 
 	}
 
-
-
-
-
-
-	public static void getLargestTruck(){
+	public static void getLargestTruck() 
+	{
 		
+
 	}
-	public static void copyVehicles()
+
+	public static void copyVehicles() 
 	{
 
 	}
 
 
-	public static void addVehicle(Scanner scanner){
+	public static void addVehicle(Scanner kb) {
 		System.out.println("Select a vehicle type:");
 		System.out.println("1. Electric Car");
 		System.out.println("2. Gasoline Car");
 		System.out.println("3. Diesel Truck");
 		System.out.println("4. Electric Truck");
 
-		int choice = scanner.nextInt();
+		int choice = kb.nextInt();
 
 		System.out.println("Enter make:");
-		String make = scanner.nextLine();
+		String make = kb.nextLine();
+		kb.nextLine();
 
 		System.out.println("Enter model:");
-		String model = scanner.nextLine();
+		String model = kb.nextLine();
+		kb.nextLine();
 
 		System.out.println("Enter year of production:");
-		int yop = scanner.nextInt();
+		int yop = kb.nextInt();
+		kb.nextLine();
 
-		switch(choice){
+		switch (choice) {
 			case 1:
 				System.out.println("Enter the maximum number of passengers");
-				int electricCarMaxPassengers = scanner.nextInt();
+				int electricCarMaxPassengers = kb.nextInt();
+				kb.nextLine();
 
 				System.out.println("Enter the maximum autonomy range");
-				int electricCarMaxAutonomyRange = scanner.nextInt();
+				int electricCarMaxAutonomyRange = kb.nextInt();
+				kb.nextLine();
 
 				Electric_Car newElectric_Car = new Electric_Car(make, model, yop, electricCarMaxPassengers, electricCarMaxAutonomyRange);
-
+				break;
 			case 2:
 				System.out.println("Enter the maximum number of passengers");
-				int gasolineCarMaxPassengers = scanner.nextInt();
+				int gasolineCarMaxPassengers = kb.nextInt();
 
 				Gasoline_Car newGasoline_Car = new Gasoline_Car(make, model, yop, gasolineCarMaxPassengers);
-
+				break;
 			case 3:
 				System.out.println("Enter max weight capacity:");
-				int dieselTruckWeight = scanner.nextInt();
-				
+				int dieselTruckWeight = kb.nextInt();
+
 				System.out.println("Enter max fuel capacity:");
-				int dieselTruckFuelCapacity = scanner.nextInt();
+				int dieselTruckFuelCapacity = kb.nextInt();
 
 				Diesel_Truck newDiesel_Truck = new Diesel_Truck(make, model, yop, dieselTruckWeight, dieselTruckFuelCapacity);
-
+				break;
 			case 4:
 				System.out.println("Enter max weight capacity:");
-				int electricTruckWeight = scanner.nextInt();
-				
+				int electricTruckWeight = kb.nextInt();
+
 				System.out.println("Enter max fuel capacity:");
-				int electricTruckFuelCapacity = scanner.nextInt();
+				int electricTruckFuelCapacity = kb.nextInt();
 
 				Electric_Truck newElectric_Truck = new Electric_Truck(make, model, yop, electricTruckWeight, electricTruckFuelCapacity);
+				break;
+			default:
+				System.out.println("Invalid choice. Returning to main menu");
+				break;
 
 		}
 	}
 
+	public static void deleteVehicle(Scanner kb, Vehicles[] All_Vehicles) {
+		System.out.println("Enter the plate number of the vehicle you wish to delete");
+		String plate_number = kb.nextLine();
 
+		int index = -1;
 
+		for (int i = 0; i < vehicleCount; i++) {
+			if (All_Vehicles[i].getPlate_Number().equals(plate_number)) {
+				index = i;
+				break;
+			}
 
-	public static void addVehicle(Scanner scanner){
-		System.out.println("Select a vehicle type:");
-		System.out.println("1. Electric Car");
-		System.out.println("2. Gasoline Car");
-		System.out.println("3. Diesel Truck");
-		System.out.println("4. Electric Truck");
+			// If vehicle is found, delete it
+			if (index != -1) {
+				System.out.println("Vehicle found: " + All_Vehicles[index]);
+				System.out.println("Deleting vehicle...");
 
-		int choice = scanner.nextInt();
+				// Shift remaining elements to fill the gap
+				for (int j = index; j < vehicleCount - 1; j++) {
+					All_Vehicles[j] = All_Vehicles[j + 1];
+				}
 
-		System.out.println("Enter make:");
-		String make = scanner.nextLine();
+				// Nullify the last element and update count
+				All_Vehicles[vehicleCount - 1] = null;
+				vehicleCount--;
 
-		System.out.println("Enter model:");
-		String model = scanner.nextLine();
-
-		System.out.println("Enter year of production:");
-		int yop = scanner.nextInt();
-
-		switch(choice){
-			case 1:
-				System.out.println("Enter the maximum number of passengers");
-				int electricCarMaxPassengers = scanner.nextInt();
-
-				System.out.println("Enter the maximum autonomy range");
-				int electricCarMaxAutonomyRange = scanner.nextInt();
-
-				Electric_Car newElectric_Car = new Electric_Car(make, model, yop, electricCarMaxPassengers, electricCarMaxAutonomyRange);
-
-			case 2:
-				System.out.println("Enter the maximum number of passengers");
-				int gasolineCarMaxPassengers = scanner.nextInt();
-
-				Gasoline_Car newGasoline_Car = new Gasoline_Car(make, model, yop, gasolineCarMaxPassengers);
-
-			case 3:
-				System.out.println("Enter max weight capacity:");
-				int dieselTruckWeight = scanner.nextInt();
-				
-				System.out.println("Enter max fuel capacity:");
-				int dieselTruckFuelCapacity = scanner.nextInt();
-
-				Diesel_Truck newDiesel_Truck = new Diesel_Truck(make, model, yop, dieselTruckWeight, dieselTruckFuelCapacity);
-
-			case 4:
-				System.out.println("Enter max weight capacity:");
-				int electricTruckWeight = scanner.nextInt();
-				
-				System.out.println("Enter max fuel capacity:");
-				int electricTruckFuelCapacity = scanner.nextInt();
-
-				Electric_Truck newElectric_Truck = new Electric_Truck(make, model, yop, electricTruckWeight, electricTruckFuelCapacity);
+				System.out.println("Vehicle deleted successfully.");
+			} else {
+				System.out.println("Vehicle with plate number " + plate_number + " not found.");
+			}
 
 		}
+
 	}
 
-
-
+	public static void updateVehicle(Scanner kb) {}
 }
