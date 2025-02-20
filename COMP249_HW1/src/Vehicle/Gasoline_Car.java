@@ -31,7 +31,7 @@ public class Gasoline_Car extends Cars
 		if(obj == null || !(obj instanceof Gasoline_Car))
 			return false;
 		Gasoline_Car obj2 = (Gasoline_Car)obj;
-		return this.getMake().equals(obj2.getMake()) && this.getModel().equals(obj2.getModel()) && this.getYear_of_Production() == obj2.getYear_of_Production() && this.getMax_People() == obj2.getMax_People();
+		return this.getMake().equals(obj2.getMake()) && this.getModel().equals(obj2.getModel()) && this.getYear_of_Production() == obj2.getYear_of_Production() && this.getMaxPassengers() == obj2.getMaxPassengers();
 		
 	}
 	
