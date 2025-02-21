@@ -219,8 +219,7 @@ public class Driver {
 		System.out.println("3. Diesel Truck");
 		System.out.println("4. Electric Truck");
 
-		int choice = kb.nextInt();
-		kb.nextLine();
+
 
 		System.out.println("Enter make:");
 		String make = kb.nextLine();
@@ -232,8 +231,12 @@ public class Driver {
 		int yop = kb.nextInt();
 		kb.nextLine();
 
+		int choice = kb.nextInt();
+		kb.nextLine();
+
 		switch (choice){
 			case 1:
+				System.out.println("Entered Case 1: electric car");
 				System.out.println("Enter the maximum number of passengers");
 				int electricCarMaxPassengers = kb.nextInt();
 
@@ -243,12 +246,14 @@ public class Driver {
 				newVehicles = new Electric_Car(make, model, yop, electricCarMaxPassengers, electricCarMaxAutonomyRange);
 				break;
 			case 2:
+				System.out.println("Entered Case 2: gas car");
 				System.out.println("Enter the maximum number of passengers");
 				int gasolineCarMaxPassengers = kb.nextInt();
 
 				newVehicles = new Gasoline_Car(make, model, yop, gasolineCarMaxPassengers);
 				break;
 			case 3:
+			System.out.println("Entered Case 3: diesel truck");
 				System.out.println("Enter max weight capacity:");
 				int dieselTruckWeight = kb.nextInt();
 
@@ -259,6 +264,7 @@ public class Driver {
 				newVehicles = new Diesel_Truck(make, model, yop, dieselTruckWeight, dieselTruckFuelCapacity);
 				break;
 			case 4:
+			System.out.println("Entered Case 4: electric truck1");
 				System.out.println("Enter max weight capacity:");
 				int electricTruckWeight = kb.nextInt();
 
@@ -276,9 +282,12 @@ public class Driver {
 
 		//Stores the Vehicle to the array
 		if(newVehicles != null){
+			System.out.println("DEBUG: Vehicle object created -> " + newVehicles);
 			all_Vehicles[vehicleCount] = newVehicles;
 			vehicleCount++;
 			System.out.println("Vehicle successfully added!");
+		} else {
+			System.out.println("DEBUG: newVehicles is null, vehicle not added.");
 		}
 
 	}
