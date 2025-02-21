@@ -23,7 +23,6 @@ public class Driver {
 
 
 		do {
-
 			System.out.println("Please choose");
 			System.out.println("\t (1) Vehicle Management");
 			System.out.println("\t (2) Client Management");
