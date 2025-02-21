@@ -42,14 +42,20 @@ public class Driver {
 					Choice2 = kb.nextInt();
 					switch (Choice2) {
 						case 1:
+							System.out.println("Test add");
 							addVehicle(kb);
 							break;
 						case 2:
-							deleteVehicle(kb, all_Vehicles);
+							System.out.println("Test delete");
+							deleteVehicle(kb);
 							break;
 						case 3:
+							System.out.println("Test update");
+							updateVehicle(kb);
 							break;
 						case 4:
+							System.out.println("Test List");
+							listAllVehicles(kb);
 							break;
 						case 5:
 							break;
@@ -277,30 +283,30 @@ public class Driver {
 
 	}
 
-	public static void deleteVehicle(Scanner kb, Vehicles[] All_Vehicles) {
+	public static void deleteVehicle(Scanner kb) {
 		System.out.println("Enter the plate number of the vehicle you wish to delete");
 		String plate_number = kb.nextLine();
 
 		int index = -1;
 
 		for (int i = 0; i < vehicleCount; i++) {
-			if (All_Vehicles[i].getPlate_Number().equals(plate_number)) {
+			if (all_Vehicles[i].getPlate_Number().equals(plate_number)) {
 				index = i;
 				break;
 			}
 
 			// If vehicle is found, delete it
 			if (index != -1) {
-				System.out.println("Vehicle found: " + All_Vehicles[index]);
+				System.out.println("Vehicle found: " + all_Vehicles[index]);
 				System.out.println("Deleting vehicle...");
 
 				// Shift remaining elements to fill the gap
 				for (int j = index; j < vehicleCount - 1; j++) {
-					All_Vehicles[j] = All_Vehicles[j + 1];
+					all_Vehicles[j] = all_Vehicles[j + 1];
 				}
 
 				// Nullify the last element and update count
-				All_Vehicles[vehicleCount - 1] = null;
+				all_Vehicles[vehicleCount - 1] = null;
 				vehicleCount--;
 
 				System.out.println("Vehicle deleted successfully.");
@@ -313,4 +319,41 @@ public class Driver {
 	}
 
 	public static void updateVehicle(Scanner kb) {}
+
+	public static void listAllVehicles(Scanner kb) {
+		if(vehicleCount == 0){
+			System.out.println("No Vehicles in the system");
+			return;
+		} 
+
+		System.out.println("Electric Cars: ");
+		for(int i = 0; i < vehicleCount; i++){
+			if(all_Vehicles[i] instanceof Electric_Car){
+				System.out.println(all_Vehicles[i]);
+			}
+		}
+
+		System.out.println("Gasoline Cars: ");
+		for(int i = 0; i < vehicleCount; i++){
+			if(all_Vehicles[i] instanceof Gasoline_Car){
+				System.out.println(all_Vehicles[i]);
+			}
+		}
+
+		System.out.println("Electric Trucks: ");
+		for(int i = 0; i < vehicleCount; i++){
+			if(all_Vehicles[i] instanceof Electric_Truck){
+				System.out.println(all_Vehicles[i]);
+			}
+		}
+
+		System.out.println("Diesel Trucks: ");
+		for(int i = 0; i < vehicleCount; i++){
+			if(all_Vehicles[i] instanceof Diesel_Truck){
+				System.out.println(all_Vehicles[i]);
+			}
+		}
+	}
+
+	
 }
