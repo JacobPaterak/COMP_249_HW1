@@ -7,6 +7,8 @@ import Vehicle.*;
 public class Driver {
 
 	public static int vehicleCount = 0;
+	public static final int MAX_SIZE = 100;
+	public static Vehicles[] all_Vehicles = new Vehicles[MAX_SIZE];
 
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
@@ -18,7 +20,7 @@ public class Driver {
 		int counter = 0;
 		int type = 0;
 		int index = 0;
-		Vehicles[] all_Vehicles = new Vehicles[10];
+		//Vehicles[] all_Vehicles = new Vehicles[10];
 		all_Vehicles[0] = new Gasoline_Car();
 
 
@@ -193,6 +195,14 @@ public class Driver {
 
 
 	public static void addVehicle(Scanner kb) {
+		if(vehicleCount >= MAX_SIZE){
+			System.out.println("Vehicle storage is full");
+			return;
+		}
+
+		Vehicles newVehicles = null;
+
+
 		System.out.println("Select a vehicle type:");
 		System.out.println("1. Electric Car");
 		System.out.println("2. Gasoline Car");
@@ -200,14 +210,13 @@ public class Driver {
 		System.out.println("4. Electric Truck");
 
 		int choice = kb.nextInt();
+		kb.nextLine();
 
 		System.out.println("Enter make:");
 		String make = kb.nextLine();
-		kb.nextLine();
 
 		System.out.println("Enter model:");
 		String model = kb.nextLine();
-		kb.nextLine();
 
 		System.out.println("Enter year of production:");
 		int yop = kb.nextInt();
@@ -223,13 +232,14 @@ public class Driver {
 				int electricCarMaxAutonomyRange = kb.nextInt();
 				kb.nextLine();
 
-				Electric_Car newElectric_Car = new Electric_Car(make, model, yop, electricCarMaxPassengers, electricCarMaxAutonomyRange);
+				newVehicles = new Electric_Car(make, model, yop, electricCarMaxPassengers, electricCarMaxAutonomyRange);
 				break;
 			case 2:
 				System.out.println("Enter the maximum number of passengers");
 				int gasolineCarMaxPassengers = kb.nextInt();
+				kb.nextLine();
 
-				Gasoline_Car newGasoline_Car = new Gasoline_Car(make, model, yop, gasolineCarMaxPassengers);
+				newVehicles = new Gasoline_Car(make, model, yop, gasolineCarMaxPassengers);
 				break;
 			case 3:
 				System.out.println("Enter max weight capacity:");
@@ -237,23 +247,34 @@ public class Driver {
 
 				System.out.println("Enter max fuel capacity:");
 				int dieselTruckFuelCapacity = kb.nextInt();
+				kb.nextLine();
 
-				Diesel_Truck newDiesel_Truck = new Diesel_Truck(make, model, yop, dieselTruckWeight, dieselTruckFuelCapacity);
+				newVehicles = new Diesel_Truck(make, model, yop, dieselTruckWeight, dieselTruckFuelCapacity);
 				break;
 			case 4:
 				System.out.println("Enter max weight capacity:");
 				int electricTruckWeight = kb.nextInt();
+				kb.nextLine();
 
 				System.out.println("Enter max fuel capacity:");
 				int electricTruckFuelCapacity = kb.nextInt();
+				kb.nextLine();
 
-				Electric_Truck newElectric_Truck = new Electric_Truck(make, model, yop, electricTruckWeight, electricTruckFuelCapacity);
+				newVehicles = new Electric_Truck(make, model, yop, electricTruckWeight, electricTruckFuelCapacity);
 				break;
 			default:
 				System.out.println("Invalid choice. Returning to main menu");
 				break;
 
 		}
+
+		//Stores the Vehicle to the array
+		if(newVehicles != null){
+			all_Vehicles[vehicleCount] = newVehicles;
+			vehicleCount++;
+			System.out.println("Vehicle successfully added!");
+		}
+
 	}
 
 	public static void deleteVehicle(Scanner kb, Vehicles[] All_Vehicles) {
