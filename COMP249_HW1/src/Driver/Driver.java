@@ -40,6 +40,7 @@ public class Driver {
 					System.out.println("(4) List all vehicles by category");
 					System.out.println("(5) Exit");
 					Choice2 = kb.nextInt();
+
 					switch (Choice2) {
 						case 1:
 							System.out.println("Test add");
@@ -196,8 +197,9 @@ public class Driver {
 			}
 		}
 	}
-	public static void returnVehicle(int index, String plate_number, Clients[] All_Clients, Vehicles[] All_Vehicles)
-	{
+
+
+	public static void returnVehicle(int index, String plate_number, Clients[] All_Clients, Vehicles[] All_Vehicles){
 
 	}
 
@@ -234,18 +236,15 @@ public class Driver {
 			case 1:
 				System.out.println("Enter the maximum number of passengers");
 				int electricCarMaxPassengers = kb.nextInt();
-				kb.nextLine();
 
 				System.out.println("Enter the maximum autonomy range");
 				int electricCarMaxAutonomyRange = kb.nextInt();
-				kb.nextLine();
 
 				newVehicles = new Electric_Car(make, model, yop, electricCarMaxPassengers, electricCarMaxAutonomyRange);
 				break;
 			case 2:
 				System.out.println("Enter the maximum number of passengers");
 				int gasolineCarMaxPassengers = kb.nextInt();
-				kb.nextLine();
 
 				newVehicles = new Gasoline_Car(make, model, yop, gasolineCarMaxPassengers);
 				break;
@@ -262,17 +261,16 @@ public class Driver {
 			case 4:
 				System.out.println("Enter max weight capacity:");
 				int electricTruckWeight = kb.nextInt();
+
+				System.out.println("Enter maximum autonomy range:");
+				int electricTruckMaxAutonomyRange = kb.nextInt();
 				kb.nextLine();
 
-				System.out.println("Enter max fuel capacity:");
-				int electricTruckFuelCapacity = kb.nextInt();
-				kb.nextLine();
-
-				newVehicles = new Electric_Truck(make, model, yop, electricTruckWeight, electricTruckFuelCapacity);
+				newVehicles = new Electric_Truck(make, model, yop, electricTruckWeight, electricTruckMaxAutonomyRange);
 				break;
 			default:
 				System.out.println("Invalid choice. Returning to main menu");
-				break;
+				return;
 
 		}
 

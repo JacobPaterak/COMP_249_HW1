@@ -10,21 +10,21 @@ public class Electric_Truck extends Truck{
     public Electric_Truck(){
         super();
         this.maxAutonomyRange = 0.0;
-        this.plateNumber = "EC" + electricTruckCounter++;
+        this.plateNumber = "ET" + electricTruckCounter++;
     }
 
     //Parameterized Constructor
     public Electric_Truck(String Make, String Model, int Year_of_Production, double maxWeightCapacity, double maxAutonomyRange){
         super(Make, Model, Year_of_Production, maxWeightCapacity);
         this.maxAutonomyRange = maxAutonomyRange;
-        this.plateNumber= "EC" + electricTruckCounter++;
+        this.plateNumber= "ET" + electricTruckCounter++;
     }
 
     //Copy Constructor
     public Electric_Truck(Electric_Truck obj){
         super(obj);
         this.maxAutonomyRange = obj.getMaxAutonomyRange();
-        this.plateNumber = "EC" + electricTruckCounter++;
+        this.plateNumber = "ET" + electricTruckCounter++;
 
     }
 
