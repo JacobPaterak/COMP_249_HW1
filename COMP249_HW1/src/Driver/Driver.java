@@ -143,6 +143,19 @@ public class Driver {
 		}
 	}
 
+
+
+	public static void getLargestTruck() 
+	{
+		
+
+	}
+
+	public static void copyVehicles() 
+	{
+
+	}
+
 	public static void addClient(String name, Clients[] All_Clients, int counter) {
 		All_Clients[counter] = new Clients(name);
 		counter++;
@@ -188,16 +201,6 @@ public class Driver {
 
 	}
 
-	public static void getLargestTruck() 
-	{
-		
-
-	}
-
-	public static void copyVehicles() 
-	{
-
-	}
 
 
 	public static void addVehicle(Scanner kb) {
@@ -207,7 +210,6 @@ public class Driver {
 		}
 
 		Vehicles newVehicles = null;
-
 
 		System.out.println("Select a vehicle type:");
 		System.out.println("1. Electric Car");
@@ -228,7 +230,7 @@ public class Driver {
 		int yop = kb.nextInt();
 		kb.nextLine();
 
-		switch (choice) {
+		switch (choice){
 			case 1:
 				System.out.println("Enter the maximum number of passengers");
 				int electricCarMaxPassengers = kb.nextInt();
@@ -318,7 +320,96 @@ public class Driver {
 
 	}
 
-	public static void updateVehicle(Scanner kb) {}
+	public static void updateVehicle(Scanner kb) {
+		if(vehicleCount == 0){
+			System.out.println("No vehicles in the system");
+			return;
+		}
+
+		System.out.println("Enter the plate number of the vehicle that you would like to update");
+		String plateNumber = kb.nextLine();
+
+		Vehicles vehicleToUpdate = null;
+		int index = -1;
+
+		for(int i = 0; i < vehicleCount; i++){
+			if(all_Vehicles[i].getPlate_Number().equals(plateNumber)){
+				vehicleToUpdate = all_Vehicles[i];
+				index = i;
+				break;
+			}
+		}
+
+		if(vehicleToUpdate == null){
+			System.out.println("Vehicle with plate number " + plateNumber + " not found");
+			return;
+		}
+
+		System.out.println("Vehicle found: "+ vehicleToUpdate);
+		System.out.println("Select which attribute to update");
+		System.out.println("\t (1) Make");
+		System.out.println("\t (2) Model");
+		System.out.println("\t (3) Year of Production");
+
+		if(vehicleToUpdate instanceof Cars){
+			System.out.println("\t (4) Max Passengers");
+		} else if (vehicleToUpdate instanceof Truck){
+			System.out.println("\t (4) Max Weight Capcity");
+		}
+
+		if(vehicleToUpdate instanceof Electric_Car || vehicleToUpdate instanceof Electric_Truck){
+			System.out.println("\t (5) Max Autonomy Range");
+		} else if (vehicleToUpdate instanceof Diesel_Truck){
+			System.out.println("\t (5) Fuel Tank Capacity");
+		}
+
+		int choice = kb.nextInt();
+
+		switch (choice) {
+			case 1:
+				System.out.println("Enter new make:");
+				all_Vehicles[index].setMake(kb.nextLine());
+				break;
+			case 2:
+				System.out.println("Enter new model:");
+				all_Vehicles[index].setModel(kb.nextLine());
+				break;
+			case 3:
+				System.out.println("Enter new year of production:");
+				all_Vehicles[index].setYear_Of_Production(kb.nextInt());
+				kb.nextLine();
+				break;
+			case 4:
+				if(vehicleToUpdate instanceof Cars){
+					System.out.println("Enter new maximum passengers");
+					((Cars) all_Vehicles[index]).setMaxPassengers(kb.nextInt());
+				} else if(vehicleToUpdate instanceof Truck){
+					System.out.println("Enter new max weigh capacity:");
+					((Truck) all_Vehicles[index]).setMaxWeightCapacity(kb.nextInt());
+				}
+				kb.nextLine();
+				break;
+			case 5:
+				if(vehicleToUpdate instanceof Electric_Car){
+					System.out.println("Enter new max autonomy range:");
+					((Electric_Car) all_Vehicles[index]).setMax_Range(kb.nextInt());
+				} else if(vehicleToUpdate instanceof Electric_Truck){
+					System.out.println("Enter new max autonomy range:");
+					((Electric_Truck) all_Vehicles[index]).setMaxAutonomyRange(kb.nextInt());
+				} else if(vehicleToUpdate instanceof Diesel_Truck){
+					System.out.println("Enter new max fuel capacity:");
+					((Diesel_Truck) all_Vehicles[index]).setfuelCapacity(kb.nextDouble());
+				}
+				kb.nextLine();
+				break;
+			default:
+				System.out.println("Not a valid input, returning to main menu");
+				return;
+		}
+
+		System.out.println("Vehicle successfully updated");
+
+	}
 
 	public static void listAllVehicles(Scanner kb) {
 		if(vehicleCount == 0){
@@ -355,5 +446,5 @@ public class Driver {
 		}
 	}
 
-	
+
 }
