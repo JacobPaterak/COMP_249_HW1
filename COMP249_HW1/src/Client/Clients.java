@@ -13,60 +13,53 @@ public class Clients
 //Ex Client josh = new CLient()
 //this.vehicles[] and we can put the adddition and subtraction of array size in here too
 //
-    public Clients()
-    {
+    public Clients(){
       this.name = "";
       id++;
     }
-    public Clients(String name)
-    {
+
+    public Clients(String name){
         this.name = name;
         id++;
     }
-    public void setName(String name)
-    {
+
+    public void setName(String name){
         this.name = name;
     }
-    public String getName()
-    {
+
+    public String getName(){
         return this.name;
     }
-    public int getId()
-    {
+
+    public int getId(){
         return this.id;
     }
-    public void setId()
-    {
+
+    public void setId(){
 
     }
-    public Vehicles[] getArray()
-    {
+    public Vehicles[] getArray(){
         return this.vehicles;
     }
-    public void setVehicles(Vehicles veh)
-    {
-        this.vehicles[counter] = veh;
+
+    public void setVehicles(Vehicles vehicles){
+        this.vehicles[counter] = vehicles;
         counter++;
     }
-    public String toString()
-    {
+
+    public String toString(){
         return this.name + " " + this.id;
     }
-    public Vehicles getVehicles(int index)
-    {
-        if (this.vehicles[index] instanceof Cars)
-        {
-            if (this.vehicles[index] instanceof Electric_Car)
-            {
+
+    public Vehicles getVehicles(int index){
+        if (this.vehicles[index] instanceof Cars){
+            if (this.vehicles[index] instanceof Electric_Car){
                 Electric_Car obj = (Electric_Car) this.vehicles[index];
                 return this.vehicles[index];
-            }
-            else
-            {
+            } else {
                 Gasoline_Car obj = (Gasoline_Car) this.vehicles[index];
                 return this.vehicles[index];
             }
-
         }
         return null;
     }
