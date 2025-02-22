@@ -20,6 +20,7 @@ public class Vehicles {
 	}
 
 	public String getPlate_Number(){
+
 		return this.Plate_Number;
 	}
 
@@ -66,7 +67,7 @@ public class Vehicles {
 	}
 
 	public String toString(){
-		return "The model is " + this.Model + " the make is " +  this.Make + " the year of production is " + this.Year_of_Production;
+		return  "The model is " + this.Model + " the make is " +  this.Make + " the year of production is " + this.Year_of_Production;
 	}
 
 	public boolean equals(Object obj){

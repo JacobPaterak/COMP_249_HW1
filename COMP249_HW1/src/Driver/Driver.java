@@ -9,6 +9,9 @@ public class Driver {
 	public static int vehicleCount = 0;
 	public static final int MAX_SIZE = 100;
 	public static Vehicles[] all_Vehicles = new Vehicles[MAX_SIZE];
+	int h = 1;
+
+
 
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
@@ -22,10 +25,17 @@ public class Driver {
 		int index = 0;
 		//Vehicles[] all_Vehicles = new Vehicles[10];
 		all_Vehicles[0] = new Gasoline_Car();
+		Gasoline_Car g1 = new Gasoline_Car();
+		System.out.println(g1.getPlate_Number());
+		System.out.println(all_Vehicles[0].getPlate_Number());
 
 
+
+		System.out.println("Welcome to Royal Rentals");
 		do {
-			System.out.println("Please choose");
+
+
+			System.out.println("Please choose an option");
 			System.out.println("\t (1) Vehicle Management");
 			System.out.println("\t (2) Client Management");
 			System.out.println("\t (3) Leasing Operations");
@@ -98,6 +108,7 @@ public class Driver {
 					System.out.println("(3) Show all vehicles leased by a client");
 					System.out.println("(4) Show all leased vehicles");
 					System.out.println("(5) Exit");
+					Choice2 = kb.nextInt();
 					switch (Choice2) {
 						case 1:
 							//Plate number
@@ -105,27 +116,67 @@ public class Driver {
 							System.out.println("To which client are we adding a vehicle to? ");
 							name = kb.next();
 							for (int i = 0; i < All_Clients.length; i++) {
+								if(All_Clients[i] != null) {
 								if (All_Clients[i].getName().equals(name)) {
 									for (int j = 0; j < All_Clients.length; j++) {
 										if (All_Clients[j] != null) {
 											if (All_Clients[j].getName().equals(name))
 												index = j;
+											System.out.print("Enter the plate number of the vehicle you wish to lease ");
+											String plate_number = kb.next();
+											leaseVehicle(index, plate_number, All_Clients, all_Vehicles);
 										}
 									}
+								}
 								} else {
 									System.out.println("Client not found");
 								}
 							}
-							System.out.print("Enter the plate number of the vehicle you wish to lease");
-							String plate_number = kb.next();
-							leaseVehicle(index, plate_number, All_Clients, all_Vehicles);
 
+						break;
 						case 2:
+							System.out.println("To which client are we removing a vehicle from? ");
+							name = kb.next();
+							for (int i = 0; i < All_Clients.length; i++) {
+								if (All_Clients[i] != null) {
+									if (All_Clients[i].getName().equals(name)) {
+										for (int j = 0; j < All_Clients.length; j++) {
+											if (All_Clients[j] != null) {
+												if (All_Clients[j].getName().equals(name))
+													index = j;
+												System.out.print("Enter the plate number of the vehicle you wish to return ");
+												String plate_number = kb.next();
+												returnVehicle(index, plate_number, All_Clients, all_Vehicles);
+											}
+										}
+									}
+								}
+							}
+							break;
 						case 3:
+							System.out.println("Which client would you like to see the vehicles leased by? ");
+							name = kb.next();
+							for (int i = 0; i < All_Clients.length; i++) {
+								if (All_Clients[i] != null) {
+									if (All_Clients[i].getName().equals(name)) {
+										for (int j = 0; j < All_Clients.length; j++) {
+											if (All_Clients[j] != null) {
+												if (All_Clients[j].getName().equals(name))
+													index = j;
+												allLeasedVehicles(All_Clients, index);
+											}
+										}
+									}
+								}
+							}
+							break;
 						case 4:
+							displayVehicles();
+							break;
 						case 5:
 							break;
 					}
+					break;
 				case 4:
 					System.out.println("(1) Display the truck with the largest capacity");
 					System.out.println("(2) Create a copy of the electric trucks array");
@@ -189,19 +240,54 @@ public class Driver {
 
 	public static void leaseVehicle(int index, String plate_number, Clients[] All_Clients, Vehicles[] All_Vehicles) {
 		for (int i = 0; i < All_Vehicles.length; i++) {
+			if(All_Vehicles[i] != null){
 			if (All_Vehicles[i].getPlate_Number().equals(plate_number) && All_Vehicles[i].getLeased() == false) {
 				All_Clients[index].setVehicles(All_Vehicles[i]);
 				All_Vehicles[i].setLeased(true);
 				System.out.println("Vehicle leased");
 				break;
 			}
+			else
+				System.out.println("Vehicle not found or already leased");
+
+			}
+	}}
+
+
+	public static void returnVehicle(int index, String plate_number, Clients[] All_Clients, Vehicles[] All_Vehicles){
+	for(int i = 0; i < All_Vehicles.length; i++){
+		if(All_Vehicles[i] != null){
+			if(All_Vehicles[i].getPlate_Number().equals(plate_number) && All_Vehicles[i].getLeased() == true){
+				All_Clients[index].setVehicles(null);
+				All_Vehicles[i].setLeased(false);
+				System.out.println("Vehicle returned");
+				break;
+			} else
+				System.out.println("Vehicle not found or not leased");
+		}
+	}
+	}
+	public static void allLeasedVehicles(Clients[] All_Clients, int index)
+	{
+
+		System.out.println("All the leased vehicles for client " + All_Clients[index].getName() + " are: ");
+		Vehicles[] leasedVehicles = All_Clients[index].getArray();
+		for(int i = 0; i < leasedVehicles.length; i++) {
+			if (leasedVehicles[i] != null)
+				System.out.println(leasedVehicles[i].toString());
+		}
+	}
+	public static void displayVehicles() {
+		System.out.println("All the vehicles are: ");
+		for (int i = 0; i < all_Vehicles.length; i++) {
+			if (all_Vehicles[i] != null && all_Vehicles[i].getLeased() == true) {
+				System.out.println(all_Vehicles[i].toString());
+
+			}
 		}
 	}
 
 
-	public static void returnVehicle(int index, String plate_number, Clients[] All_Clients, Vehicles[] All_Vehicles){
-
-	}
 
 
 

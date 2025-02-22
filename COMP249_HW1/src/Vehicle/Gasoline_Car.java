@@ -2,18 +2,22 @@ package Vehicle;
 
 public class Gasoline_Car extends Cars 
 {
-	private int plate_number;
-	private static int counter = 1;
+	private String plate_number = "GC";
+	private int plate_counter = 1001;
+	private static int counter;
 	public Gasoline_Car(){
 		super();
+		this.plate_number = this.plate_number + this.plate_counter++;
+
 	}
 
 	public Gasoline_Car(String Make, String Model,int YOP, int Max_People){
 		super(Make,Model,YOP,Max_People);
+		this.plate_number = this.plate_number + this.plate_counter++;
 	}
 
 	public String toString(){
-		return super.toString();
+		return super.toString() + "The plate number is "+ this.plate_number;
 	}
 
 //	public void setPlate_Num()
@@ -21,10 +25,9 @@ public class Gasoline_Car extends Cars
 //		
 //	}
 
-	public String getPlate_Num(){
-		this.plate_number = 1000 + counter;
-		counter++;
-		return "GC" + this.plate_number;
+	public String getPlate_Number(){
+
+		return this.plate_number;
 	}
 	
 	public boolean equals(Object obj){
