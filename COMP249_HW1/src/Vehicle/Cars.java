@@ -6,10 +6,10 @@ public class Cars extends Vehicles{
 
 	public Cars(){
 		super();
-		this.maxPassengers = 5;	
+		this.maxPassengers = 0;	
 	}
 
-	public Cars(String Make , String Model, int YOP,int max_peaople){
+	public Cars(String Make , String Model, int YOP,int maxPassengers){
 		super(Make,Model,YOP);
 		this.maxPassengers = maxPassengers;
 	}
