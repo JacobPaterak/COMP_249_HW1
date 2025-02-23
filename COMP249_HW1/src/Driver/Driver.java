@@ -197,10 +197,26 @@ public class Driver {
 
 
 
-	public static void getLargestTruck() 
-	{
-		
+	public static Diesel_Truck getLargestTruck(Vehicles[] all_Vehicles){
+		if(vehicleCount == 0){
+			System.out.println("No Vehicles in the system");
+			return null;
+		}
 
+		Diesel_Truck largestTruck = null;
+
+		for(int i = 0; i < vehicleCount; i++){
+			if(all_Vehicles[i] instanceof Diesel_Truck){
+				Diesel_Truck truck = (Diesel_Truck) all_Vehicles[i];
+				if(largestTruck == null || truck.getMaxWeightCapacity() > largestTruck.getMaxWeightCapacity()){
+					largestTruck = truck;
+				}
+
+			}
+		}
+
+		return largestTruck;
+		
 	}
 
 	public static void copyVehicles() 
@@ -267,8 +283,8 @@ public class Driver {
 		}
 	}
 	}
-	public static void allLeasedVehicles(Clients[] All_Clients, int index)
-	{
+
+	public static void allLeasedVehicles(Clients[] All_Clients, int index){
 
 		System.out.println("All the leased vehicles for client " + All_Clients[index].getName() + " are: ");
 		Vehicles[] leasedVehicles = All_Clients[index].getArray();
@@ -291,7 +307,7 @@ public class Driver {
 
 
 
-	public static void addVehicle(Scanner kb) {
+	public static void addVehicle(Scanner kb){
 		if(vehicleCount >= MAX_SIZE){
 			System.out.println("Vehicle storage is full");
 			return;
