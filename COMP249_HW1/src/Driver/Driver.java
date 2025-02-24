@@ -13,6 +13,7 @@ public class Driver {
     //int h = 1;
 
     public static void main(String[] args) {
+		System.out.println("Hello world");
         Scanner kb = new Scanner(System.in);
         int choice;
         int choice2;
