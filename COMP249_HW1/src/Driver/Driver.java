@@ -14,8 +14,8 @@ public class Driver {
 
     public static void main(String[] args) {
         Scanner kb = new Scanner(System.in);
-        int choice = 0;
-        int Choice2 = 0;
+        int choice;
+        int choice2;
         Clients[] All_Clients = new Clients[100];
         String name;
         String Changes_Name;
@@ -49,24 +49,24 @@ public class Driver {
                     System.out.println("(3) Update a vehicle information");
                     System.out.println("(4) List all vehicles by category");
                     System.out.println("(5) Exit");
-                    Choice2 = kb.nextInt();
+                    choice2 = kb.nextInt();
 					kb.nextLine();
 
-                    switch (Choice2) {
+                    switch (choice2) {
                         case 1:
-                            System.out.println("Test add");
+                            //System.out.println("Test add");
                             addVehicle(kb);
                             break;
                         case 2:
-                            System.out.println("Test delete");
+                            //System.out.println("Test delete");
                             deleteVehicle(kb);
                             break;
                         case 3:
-                            System.out.println("Test update");
+                            //System.out.println("Test update");
                             updateVehicle(kb);
                             break;
                         case 4:
-                            System.out.println("Test List");
+                            //System.out.println("Test List");
                             listAllVehicles(kb);
                             break;
                         case 5:
@@ -83,28 +83,31 @@ public class Driver {
                     System.out.println("(2) Edit a client");
                     System.out.println("(3) Delete a client");
                     System.out.println("(4) Exit");
-                    Choice2 = kb.nextInt();
+                    choice2 = kb.nextInt();
 					kb.nextLine();
 					
-                    switch (Choice2) {
+                    switch (choice2) {
                         case 1:
                             System.out.println("Please enter the client's name");
-                            name = kb.next();
+                            name = kb.nextLine();
                             addClient(name, All_Clients, counter);
                             break;
                         case 2:
                             System.out.println("Please enter the client's name you wish to edit");
-                            name = kb.next();
+                            name = kb.nextLine();
                             System.out.println("Please enter the client's new name");
-                            Changes_Name = kb.next();
+                            Changes_Name = kb.nextLine();
                             editClient(All_Clients, name, Changes_Name);
                             break;
                         case 3:
                             System.out.println("Please enter the client's name you wish to delete");
-                            name = kb.next();
+                            name = kb.nextLine();
                             deleteClient(All_Clients, name);
                             break;
                         case 4:
+                            break;
+						default:
+                            System.out.println("Invalid choice. Please try again.");
                             break;
                     }
                     break;
@@ -115,14 +118,14 @@ public class Driver {
                     System.out.println("(3) Show all vehicles leased by a client");
                     System.out.println("(4) Show all leased vehicles");
                     System.out.println("(5) Exit");
-                    Choice2 = kb.nextInt();
+                    choice2 = kb.nextInt();
 					kb.nextLine();
 
-                    switch (Choice2) {
+                    switch (choice2) {
                         case 1:
                             // Lease a vehicle to a client
                             System.out.println("To which client are we adding a vehicle to? ");
-                            name = kb.next();
+                            name = kb.nextLine();
                             for (int i = 0; i < All_Clients.length; i++) {
                                 if (All_Clients[i] != null) {
                                     if (All_Clients[i].getName().equals(name)) {
@@ -131,7 +134,7 @@ public class Driver {
                                                 if (All_Clients[j].getName().equals(name))
                                                     index = j;
                                                 System.out.print("Enter the plate number of the vehicle you wish to lease ");
-                                                String plate_number = kb.next();
+                                                String plate_number = kb.nextLine();
                                                 leaseVehicle(index, plate_number, All_Clients, all_Vehicles);
                                             }
                                         }
@@ -144,7 +147,7 @@ public class Driver {
                         case 2:
                             // Return a vehicle from a client
                             System.out.println("To which client are we removing a vehicle from? ");
-                            name = kb.next();
+                            name = kb.nextLine();
                             for (int i = 0; i < All_Clients.length; i++) {
                                 if (All_Clients[i] != null) {
                                     if (All_Clients[i].getName().equals(name)) {
@@ -153,7 +156,7 @@ public class Driver {
                                                 if (All_Clients[j].getName().equals(name))
                                                     index = j;
                                                 System.out.print("Enter the plate number of the vehicle you wish to return ");
-                                                String plate_number = kb.next();
+                                                String plate_number = kb.nextLine();
                                                 returnVehicle(index, plate_number, All_Clients, all_Vehicles);
                                             }
                                         }
@@ -183,7 +186,8 @@ public class Driver {
                             // Show all leased vehicles
                             displayVehicles();
                             break;
-                        case 5:
+						default:
+                            System.out.println("Invalid choice. Please try again.");
                             break;
                     }
                     break;
@@ -192,7 +196,10 @@ public class Driver {
                     System.out.println("(1) Display the truck with the largest capacity");
                     System.out.println("(2) Create a copy of the electric trucks array");
                     System.out.println("(3) Exit");
-                    switch (Choice2) {
+					choice2 = kb.nextInt();
+					kb.nextLine();
+
+                    switch (choice2) {
                         case 1:
                             // Display the truck with the largest capacity
                             Diesel_Truck largestTruck = getLargestTruck(all_Vehicles);
@@ -204,10 +211,14 @@ public class Driver {
                             // Create a copy of the electric trucks array
                             copyVehicles();
                             break;
-                        case 3:
+						default:
+                            System.out.println("Invalid choice. Please try again.");
                             break;
                     }
                     break;
+					default:
+						System.out.println("Invalid choice. Please try again.");
+						break;
             }
         } while (choice != 5);
 
@@ -356,7 +367,7 @@ public class Driver {
 
         switch (addVehicleChoice) {
             case 1:
-                System.out.println("Entered Case 1: electric car");
+                //System.out.println("Entered Case 1: electric car");
                 System.out.println("Enter the maximum number of passengers");
                 int electricCarMaxPassengers = kb.nextInt();
 				kb.nextLine();
@@ -368,7 +379,7 @@ public class Driver {
                 newVehicles = new Electric_Car(make, model, yop, electricCarMaxPassengers, electricCarMaxAutonomyRange);
                 break;
             case 2:
-                System.out.println("Entered Case 2: gas car");
+                //System.out.println("Entered Case 2: gas car");
                 System.out.println("Enter the maximum number of passengers");
                 int gasolineCarMaxPassengers = kb.nextInt();
 				kb.nextLine();
@@ -376,7 +387,7 @@ public class Driver {
                 newVehicles = new Gasoline_Car(make, model, yop, gasolineCarMaxPassengers);
                 break;
             case 3:
-                System.out.println("Entered Case 3: diesel truck");
+                //System.out.println("Entered Case 3: diesel truck");
                 System.out.println("Enter max weight capacity:");
                 int dieselTruckWeight = kb.nextInt();
 				kb.nextLine();
@@ -388,7 +399,7 @@ public class Driver {
                 newVehicles = new Diesel_Truck(make, model, yop, dieselTruckWeight, dieselTruckFuelCapacity);
                 break;
             case 4:
-                System.out.println("Entered Case 4: electric truck");
+                //System.out.println("Entered Case 4: electric truck");
                 System.out.println("Enter max weight capacity:");
                 int electricTruckWeight = kb.nextInt();
 				kb.nextLine();
@@ -406,18 +417,17 @@ public class Driver {
 
         // Stores the Vehicle to the array
         if (newVehicles != null) {
-            System.out.println("DEBUG: Vehicle object created -> " + newVehicles);
+            //System.out.println("DEBUG: Vehicle object created -> " + newVehicles);
             all_Vehicles[vehicleCount] = newVehicles;
             vehicleCount++;
             System.out.println("Vehicle successfully added!");
         } else {
-            System.out.println("DEBUG: newVehicles is null, vehicle not added.");
+            System.out.println("An error occured, new vehicle not added.");
         }
     }
 
     // Method to delete a vehicle
     public static void deleteVehicle(Scanner kb) {
-		System.out.println("latest");
         System.out.println("Enter the plate number of the vehicle you wish to delete");
         String plate_number = kb.nextLine();
 
