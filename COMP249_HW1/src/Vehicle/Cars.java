@@ -1,5 +1,8 @@
 package Vehicle;
-
+//assignment 1
+//Jacob Paterak 40268958
+//Vehicle managment
+//this class represents a car and is the parent class of the gasoline car and the electric car with getters, setters,copy contructor, toString and equals methods
 public class Cars extends Vehicles{
 	//variables
 	private int maxPassengers;

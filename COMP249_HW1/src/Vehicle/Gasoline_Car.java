@@ -1,5 +1,8 @@
 package Vehicle;
-
+//assignment 1
+//Jacob Paterak 40268958
+//Vehicle managment
+//this class represents a gasoline car with getters, setters,copy contructor, toString and equals methods
 public class Gasoline_Car extends Cars 
 {
 	//variables
