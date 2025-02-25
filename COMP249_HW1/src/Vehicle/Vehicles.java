@@ -12,11 +12,11 @@ package Vehicle;
  */
 
 public class Vehicles {
-    private String Plate_Number; // Unique identifier for the vehicle
-    private String Make; // Brand of the vehicle
-    private String Model; // Model of the vehicle
-    private int Year_of_Production; // Year the vehicle was manufactured
-    private boolean is_Leased; // Indicates if the vehicle is currently leased
+    private String Plate_Number; 
+    private String Make; 
+    private String Model; 
+    private int Year_of_Production; 
+    private boolean is_Leased; 
 
     
     //Default constructor initializing default values.
