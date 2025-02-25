@@ -27,10 +27,12 @@ public class Cars extends Vehicles{
 		this.maxPassengers = obj.getMaxPassengers();
 	}
 
+	@Override
 	public String toString(){
-		return super.toString() + " the Max amount of people is "+ this.maxPassengers;
+		return super.toString() + ", Max Passengers: "+ this.maxPassengers;
 	}
 
+	@Override
 	public boolean equals(Object obj){
 		if(obj == null || !(obj instanceof Cars))
 			return false;

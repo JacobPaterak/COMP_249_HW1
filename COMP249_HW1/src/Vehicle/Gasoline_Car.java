@@ -16,20 +16,17 @@ public class Gasoline_Car extends Cars
 		this.plate_number = this.plate_number + this.plate_counter++;
 	}
 
+	@Override
 	public String toString(){
-		return super.toString() + "The plate number is "+ this.plate_number;
+		return super.toString() + ", Plate Number: "+ this.plate_number;
 	}
 
-//	public void setPlate_Num()
-//	{
-//		
-//	}
 
 	public String getPlate_Number(){
-
 		return this.plate_number;
 	}
-	
+
+	@Override
 	public boolean equals(Object obj){
 		if(obj == null || !(obj instanceof Gasoline_Car))
 			return false;
