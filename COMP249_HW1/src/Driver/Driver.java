@@ -3,7 +3,7 @@ package Driver;
 /**
  * Assignment 1 
  * Question: Vehicle Management System - Driver  Class
- * Written by: Augustin Redon 40240986
+ * Written by: Augustin Redon 40240986 - Jacob Paterak 40268958
  * 
  * This program serves as the main entry point for the Royal Rentals system.
  * It provides a menu-driven interface for vehicle management, client management,

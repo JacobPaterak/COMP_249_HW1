@@ -1,43 +1,52 @@
 package Client;
 
+/**
+ * Assignment 1
+ * Question: Client Management System
+ * Written by: Jacob Paterak 40268958 - Augustin Redon 40240986
+ * 
+ * The Clients class represents a client in the Royal Rentals system.
+ * Each client has a name, an ID, and a list of vehicles they have leased.
+ */
+
 import Vehicle.*;
 
 
-public class Clients
-{
+public class Clients{
     private String name;
     private  int id;
     private Vehicles[] vehicles = new Vehicles[10];
     private int counter = 0;
-    //Create client objeccts nnand store vehicles arrays inside
-//Ex Client josh = new CLient()
-//this.vehicles[] and we can put the adddition and subtraction of array size in here too
-//
+
+    //Default constructor initializes the client with an empty name and increments the ID.
     public Clients(){
       this.name = "";
       id++;
     }
 
+    //Parameterized constructor initializes the client with a specified name and increments the ID.
     public Clients(String name){
         this.name = name;
         id++;
     }
 
+    //Setter for the client's name.
     public void setName(String name){
         this.name = name;
     }
 
+    //Getter for the client's name.
     public String getName(){
         return this.name;
     }
 
+    //Getter for the client's ID.
     public int getId(){
         return this.id;
     }
 
-    public void setId(){
 
-    }
+
     public Vehicles[] getArray(){
         return this.vehicles;
     }
@@ -75,6 +84,7 @@ public class Clients
         System.out.println("Vehicle removed successfully.");
     }
 
+    @Override
     public String toString(){
         return this.name + " " + this.id;
     }

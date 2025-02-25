@@ -3,7 +3,7 @@ package Vehicle;
 /**
  * Assignment 1
  * Question: Vehicle Management System
- * Written by: Augustin Redon 40240986
+ * Written by: Augustin Redon 40240986 - Jacob Paterak 40268958
  * 
  * This class represents an Electric Truck, which is a specific type of truck. It includes
  * attributes such as maximum autonomy range and an automatically assigned plate number. The class

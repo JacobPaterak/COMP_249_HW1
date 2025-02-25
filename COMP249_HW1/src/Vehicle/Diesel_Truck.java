@@ -3,7 +3,7 @@ package Vehicle;
 /**
  * Assignment 1
  * Question: Vehicle Management System - Diesel Truck Class
- * Written by: Augustin Redon 40240986
+ * Written by: Augustin Redon 40240986 - Jacob Paterak 40268958
  * 
  * This class represents a Diesel Truck, which is a specific type of truck. It includes
  * attributes such as fuel capacity and an automatically assigned plate number. The class

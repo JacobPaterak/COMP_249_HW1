@@ -1,39 +1,48 @@
 package Vehicle;
 //assignment 1
-//Jacob Paterak 40268958
+//Jacob Paterak 40268958 - Augustin Redon 40240986
 //Vehicle managment
 //this class represents a car and is the parent class of the gasoline car and the electric car with getters, setters,copy contructor, toString and equals methods
+
 public class Cars extends Vehicles{
+
 	//variables
 	private int maxPassengers;
+
 	//default contructor
 	public Cars(){
 		super();
 		this.maxPassengers = 0;	
 	}
-//Parameterized constructor
+
+	//Parameterized constructor
 	public Cars(String Make , String Model, int YOP,int maxPassengers){
 		super(Make,Model,YOP);
 		this.maxPassengers = maxPassengers;
 	}
+
 	//setter
 	public void setMaxPassengers(int maxPassengers){
 		this.maxPassengers = maxPassengers;
 	}
+
 	//getter
 	public int getMaxPassengers(){
 		return this.maxPassengers;
 	}
+
 	//copy constructor
 	public Cars(Cars obj){
 		super(obj);
 		this.maxPassengers = obj.getMaxPassengers();
 	}
+
 	//to string
 	@Override
 	public String toString(){
 		return super.toString() + ", Max Passengers: "+ this.maxPassengers;
 	}
+
 	//equals
 	@Override
 	public boolean equals(Object obj){
@@ -46,8 +55,5 @@ public class Cars extends Vehicles{
 		return this.getMake().equals(obj2.getMake()) && this.getModel().equals(obj2.getModel()) && this.getYear_of_Production() == obj2.getYear_of_Production() && this.maxPassengers == obj2.maxPassengers;
 		
 	}
-
-
-
 
 }
