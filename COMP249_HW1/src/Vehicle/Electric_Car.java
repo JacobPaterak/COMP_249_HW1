@@ -23,8 +23,10 @@ public class Electric_Car extends Cars
 	public double getMax_Autonomy_Range(){
 		return this.Max_Autonomy_Range;
 	}
+
+	@Override
 	public String toString(){
-		return super.toString() +" the Max autonomy range is " +  this.Max_Autonomy_Range + "The plate number is "+ this.plate_number;
+		return super.toString() + ", Max Autonomy Range: " +  this.Max_Autonomy_Range + ", Plate Number: "+ this.plate_number;
 
 	}
 
@@ -39,6 +41,7 @@ public class Electric_Car extends Cars
 		return "EC" + this.plate_number;
 	}
 
+	@Override
 	public boolean equals(Object obj){
 		if(obj == null || !(obj instanceof Electric_Car))
 			return false;
