@@ -1,5 +1,15 @@
 package Driver;
 
+/**
+ * Assignment 1 
+ * Question: Vehicle Management System - Driver  Class
+ * Written by: Augustin Redon 40240986
+ * 
+ * This program serves as the main entry point for the Royal Rentals system.
+ * It provides a menu-driven interface for vehicle management, client management,
+ * leasing operations, and additional functionalities.
+ */
+
 import java.util.Scanner;
 import Client.*;
 import Vehicle.*;
@@ -12,11 +22,9 @@ public class Driver {
 	public static Vehicles[] all_Vehicles = new Vehicles[MAX_SIZE];
 
 
-
-
 	public static void main(String[] args) {
 		//Creating scanner
-		Scanner kb = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		//initializing variables and arrays
 		int choice = 0;
 		int choice2;
@@ -32,16 +40,20 @@ public class Driver {
 		Electric_Car[] e1 = new Electric_Car[10];
 		Diesel_Truck[] d1 = new Diesel_Truck[10];
 		Electric_Truck[] t1 = new Electric_Truck[10];
+
 		//Creating 3 objects of each type
 		g1[0] = new Gasoline_Car("Honda", "Civic", 2015, 10);
 		g1[1] = new Gasoline_Car("Toyota", "Corolla", 2015, 10);
 		g1[2] = new Gasoline_Car("Ford", "Mustang", 2015, 10);
+
 		e1[0] = new Electric_Car("Honda", "Civic", 2015, 10, 100);
 		e1[1] = new Electric_Car("Toyota", "Corolla", 2015, 10, 100);
 		e1[2] = new Electric_Car("Ford", "Mustang", 2015, 10, 100);
+
 		d1[0] = new Diesel_Truck("Mack", "Anthem", 2018, 5000, 300);
 		d1[1] = new Diesel_Truck("Peterbilt", "579", 2020, 6000, 350);
 		d1[2] = new Diesel_Truck("Kenworth", "T680", 2021, 5500, 320);
+		
 		t1[0] = new Electric_Truck("Tesla", "Semi", 2023, 8000, 500);
 		t1[1] = new Electric_Truck("Freightliner", "eCascadia", 2022, 7500, 400);
 		t1[2] = new Electric_Truck("Volvo", "VNR Electric", 2021, 7000, 350);
@@ -51,7 +63,7 @@ public class Driver {
 		System.out.println("Welcome to Royal Rentals");
 		//Asks if user wants menu or scenario
 		System.out.println("Would you like to use (1) Menu or (2) Predefined Scenario? ");
-		int scenario = kb.nextInt();
+		int scenario = scanner.nextInt();
 		if(scenario == 1) {
 			do {
 
@@ -62,8 +74,8 @@ public class Driver {
 				System.out.println("\t (3) Leasing Operations");
 				System.out.println("\t (4) Additional Operations");
 				System.out.println("\t (5) Quit");
-				choice = kb.nextInt();
-				kb.nextLine();
+				choice = scanner.nextInt();
+				scanner.nextLine();
 
 				switch (choice) {
 					case 1:
@@ -73,25 +85,21 @@ public class Driver {
 						System.out.println("(3) Update a vehicle information");
 						System.out.println("(4) List all vehicles by category");
 						System.out.println("(5) Exit");
-						choice2 = kb.nextInt();
-						kb.nextLine();
+						choice2 = scanner.nextInt();
+						scanner.nextLine();
 
 						switch (choice2) {
 							case 1:
-								//System.out.println("Test add");
-								addVehicle(kb);
+								addVehicle(scanner);
 								break;
 							case 2:
-								//System.out.println("Test delete");
-								deleteVehicle(kb);
+								deleteVehicle(scanner);
 								break;
 							case 3:
-								//System.out.println("Test update");
-								updateVehicle(kb);
+								updateVehicle(scanner);
 								break;
 							case 4:
-								//System.out.println("Test List");
-								listAllVehicles(kb);
+								listAllVehicles(scanner);
 								break;
 							case 5:
 								System.out.println("Returning to menu");
@@ -107,25 +115,25 @@ public class Driver {
 						System.out.println("(2) Edit a client");
 						System.out.println("(3) Delete a client");
 						System.out.println("(4) Exit");
-						choice2 = kb.nextInt();
-						kb.nextLine();
+						choice2 = scanner.nextInt();
+						scanner.nextLine();
 
 						switch (choice2) {
 							case 1:
 								System.out.println("Please enter the client's name");
-								name = kb.nextLine();
+								name = scanner.nextLine();
 								addClient(name, All_Clients, counter);
 								break;
 							case 2:
 								System.out.println("Please enter the client's name you wish to edit");
-								name = kb.nextLine();
+								name = scanner.nextLine();
 								System.out.println("Please enter the client's new name");
-								Changes_Name = kb.nextLine();
+								Changes_Name = scanner.nextLine();
 								editClient(All_Clients, name, Changes_Name);
 								break;
 							case 3:
 								System.out.println("Please enter the client's name you wish to delete");
-								name = kb.nextLine();
+								name = scanner.nextLine();
 								deleteClient(All_Clients, name);
 								break;
 							case 4:
@@ -142,14 +150,14 @@ public class Driver {
 						System.out.println("(3) Show all vehicles leased by a client");
 						System.out.println("(4) Show all leased vehicles");
 						System.out.println("(5) Exit");
-						choice2 = kb.nextInt();
-						kb.nextLine();
+						choice2 = scanner.nextInt();
+						scanner.nextLine();
 
 						switch (choice2) {
 							case 1:
 								// Lease a vehicle to a client
 								System.out.println("To which client are we adding a vehicle to? ");
-								name = kb.nextLine();
+								name = scanner.nextLine();
 								for (int i = 0; i < All_Clients.length; i++) {
 									//checks if array is not null
 									if (All_Clients[i] != null) {
@@ -160,7 +168,7 @@ public class Driver {
 													if (All_Clients[j].getName().equals(name))
 														index = j;
 													System.out.print("Enter the plate number of the vehicle you wish to lease ");
-													String plate_number = kb.nextLine();
+													String plate_number = scanner.nextLine();
 													leaseVehicle(index, plate_number, All_Clients, all_Vehicles);
 												}
 											}
@@ -173,7 +181,7 @@ public class Driver {
 							case 2:
 								// Return a vehicle from a client
 								System.out.println("To which client are we removing a vehicle from? ");
-								name = kb.nextLine();
+								name = scanner.nextLine();
 								for (int i = 0; i < All_Clients.length; i++) {
 									if (All_Clients[i] != null) {
 										if (All_Clients[i].getName().equals(name)) {
@@ -182,7 +190,7 @@ public class Driver {
 													if (All_Clients[j].getName().equals(name))
 														index = j;
 													System.out.print("Enter the plate number of the vehicle you wish to return ");
-													String plate_number = kb.nextLine();
+													String plate_number = scanner.nextLine();
 													returnVehicle(index, plate_number, All_Clients, all_Vehicles);
 												}
 											}
@@ -193,7 +201,7 @@ public class Driver {
 							case 3:
 								// Show all vehicles leased by a client
 								System.out.println("Which client would you like to see the vehicles leased by? ");
-								name = kb.next();
+								name = scanner.next();
 								for (int i = 0; i < All_Clients.length; i++) {
 									if (All_Clients[i] != null) {
 										if (All_Clients[i].getName().equals(name)) {
@@ -222,8 +230,8 @@ public class Driver {
 						System.out.println("(1) Display the truck with the largest capacity");
 						System.out.println("(2) Create a copy of the electric trucks array");
 						System.out.println("(3) Exit");
-						choice2 = kb.nextInt();
-						kb.nextLine();
+						choice2 = scanner.nextInt();
+						scanner.nextLine();
 
 						switch (choice2) {
 							case 1:
@@ -247,10 +255,6 @@ public class Driver {
 						break;
 				}
 
-				{
-
-
-				}
 
 			} while (choice != 5);
 		}
@@ -286,17 +290,17 @@ public class Driver {
 
 
 	// Method to get the largest truck by capacity
-	public static Diesel_Truck getLargestTruck(Vehicles[] all_Vehicles) {
-		if (vehicleCount == 0) {
+	public static Diesel_Truck getLargestTruck(Vehicles[] vehicleArray) {
+		if (vehicleArray == null || vehicleArray.length == 0) {
 			System.out.println("No Vehicles in the system");
 			return null;
 		}
 
 		Diesel_Truck largestTruck = null;
 
-		for (int i = 0; i < vehicleCount; i++) {
-			if (all_Vehicles[i] instanceof Diesel_Truck) {
-				Diesel_Truck truck = (Diesel_Truck) all_Vehicles[i];
+		for (Vehicles vehicle : vehicleArray) {
+			if (vehicle instanceof Diesel_Truck) {
+				Diesel_Truck truck = (Diesel_Truck) vehicle;
 				if (largestTruck == null || truck.getMaxWeightCapacity() > largestTruck.getMaxWeightCapacity()) {
 					largestTruck = truck;
 				}
@@ -415,7 +419,7 @@ public class Driver {
 	}
 
 	// Method to add a vehicle
-	public static void addVehicle(Scanner kb) {
+	public static void addVehicle(Scanner scanner) {
 		if (vehicleCount >= MAX_SIZE) {
 			System.out.println("Vehicle storage is full");
 			return;
@@ -424,14 +428,14 @@ public class Driver {
 		Vehicles newVehicles = null;
 
 		System.out.println("Enter make:");
-		String make = kb.nextLine();
+		String make = scanner.nextLine();
 
 		System.out.println("Enter model:");
-		String model = kb.nextLine();
+		String model = scanner.nextLine();
 
 		System.out.println("Enter year of production:");
-		int yop = kb.nextInt();
-		kb.nextLine();
+		int yop = scanner.nextInt();
+		scanner.nextLine();
 
 		System.out.println("Select a vehicle type:");
 		System.out.println("1. Electric Car");
@@ -439,51 +443,47 @@ public class Driver {
 		System.out.println("3. Diesel Truck");
 		System.out.println("4. Electric Truck");
 
-		int addVehicleChoice = kb.nextInt();
-		kb.nextLine();
+		int addVehicleChoice = scanner.nextInt();
+		scanner.nextLine();
 
 		switch (addVehicleChoice) {
 			case 1:
-				//System.out.println("Entered Case 1: electric car");
 				System.out.println("Enter the maximum number of passengers");
-				int electricCarMaxPassengers = kb.nextInt();
-				kb.nextLine();
+				int electricCarMaxPassengers = scanner.nextInt();
+				scanner.nextLine();
 
 				System.out.println("Enter the maximum autonomy range");
-				int electricCarMaxAutonomyRange = kb.nextInt();
-				kb.nextLine();
+				int electricCarMaxAutonomyRange = scanner.nextInt();
+				scanner.nextLine();
 
 				newVehicles = new Electric_Car(make, model, yop, electricCarMaxPassengers, electricCarMaxAutonomyRange);
 				break;
 			case 2:
-				//System.out.println("Entered Case 2: gas car");
 				System.out.println("Enter the maximum number of passengers");
-				int gasolineCarMaxPassengers = kb.nextInt();
-				kb.nextLine();
+				int gasolineCarMaxPassengers = scanner.nextInt();
+				scanner.nextLine();
 
 				newVehicles = new Gasoline_Car(make, model, yop, gasolineCarMaxPassengers);
 				break;
 			case 3:
-				//System.out.println("Entered Case 3: diesel truck");
 				System.out.println("Enter max weight capacity:");
-				int dieselTruckWeight = kb.nextInt();
-				kb.nextLine();
+				int dieselTruckWeight = scanner.nextInt();
+				scanner.nextLine();
 
 				System.out.println("Enter max fuel capacity:");
-				int dieselTruckFuelCapacity = kb.nextInt();
-				kb.nextLine();
+				int dieselTruckFuelCapacity = scanner.nextInt();
+				scanner.nextLine();
 
 				newVehicles = new Diesel_Truck(make, model, yop, dieselTruckWeight, dieselTruckFuelCapacity);
 				break;
 			case 4:
-				//System.out.println("Entered Case 4: electric truck");
 				System.out.println("Enter max weight capacity:");
-				int electricTruckWeight = kb.nextInt();
-				kb.nextLine();
+				int electricTruckWeight = scanner.nextInt();
+				scanner.nextLine();
 
 				System.out.println("Enter maximum autonomy range:");
-				int electricTruckMaxAutonomyRange = kb.nextInt();
-				kb.nextLine();
+				int electricTruckMaxAutonomyRange = scanner.nextInt();
+				scanner.nextLine();
 
 				newVehicles = new Electric_Truck(make, model, yop, electricTruckWeight, electricTruckMaxAutonomyRange);
 				break;
@@ -494,7 +494,6 @@ public class Driver {
 
 		// Stores the Vehicle to the array
 		if (newVehicles != null) {
-			//System.out.println("DEBUG: Vehicle object created -> " + newVehicles);
 			all_Vehicles[vehicleCount] = newVehicles;
 			vehicleCount++;
 			System.out.println("Vehicle successfully added!");
@@ -504,9 +503,9 @@ public class Driver {
 	}
 
 	// Method to delete a vehicle
-	public static void deleteVehicle(Scanner kb) {
+	public static void deleteVehicle(Scanner scanner) {
 		System.out.println("Enter the plate number of the vehicle you wish to delete");
-		String plate_number = kb.nextLine();
+		String plate_number = scanner.nextLine();
 
 		int index = -1;
 
@@ -539,18 +538,21 @@ public class Driver {
 	}
 
 	// Method to update a vehicle's information
-	public static void updateVehicle(Scanner kb) {
+	public static void updateVehicle(Scanner scanner) {
+		// Check if there are any vehicles in the system
 		if (vehicleCount == 0) {
 			System.out.println("No vehicles in the system");
 			return;
 		}
 
+		// Prompt the user to enter the plate number of the vehicle to update
 		System.out.println("Enter the plate number of the vehicle that you would like to update");
-		String plateNumber = kb.nextLine();
+		String plateNumber = scanner.nextLine();
 
 		Vehicles vehicleToUpdate = null;
 		int index = -1;
 
+		// Find the vehicle with the given plate number
 		for (int i = 0; i < vehicleCount; i++) {
 			if (all_Vehicles[i].getPlate_Number().equals(plateNumber)) {
 				vehicleToUpdate = all_Vehicles[i];
@@ -559,17 +561,20 @@ public class Driver {
 			}
 		}
 
+		// If the vehicle is not found, print a message and return
 		if (vehicleToUpdate == null) {
 			System.out.println("Vehicle with plate number " + plateNumber + " not found");
 			return;
 		}
 
+		// Display the found vehicle and prompt the user to select an attribute to update
 		System.out.println("Vehicle found: " + vehicleToUpdate);
 		System.out.println("Select which attribute to update");
 		System.out.println("\t (1) Make");
 		System.out.println("\t (2) Model");
 		System.out.println("\t (3) Year of Production");
 
+		// Display additional options based on the type of vehicle
 		if (vehicleToUpdate instanceof Cars) {
 			System.out.println("\t (4) Max Passengers");
 		} else if (vehicleToUpdate instanceof Truck) {
@@ -582,88 +587,96 @@ public class Driver {
 			System.out.println("\t (5) Fuel Tank Capacity");
 		}
 
-		int choice = kb.nextInt();
+		// Get the user's choice for the attribute to update
+		int choice = scanner.nextInt();
+		scanner.nextLine(); // Consume the newline character
 
+		// Update the selected attribute based on the user's choice
 		switch (choice) {
 			case 1:
 				System.out.println("Enter new make:");
-				all_Vehicles[index].setMake(kb.nextLine());
+				all_Vehicles[index].setMake(scanner.nextLine());
 				break;
 			case 2:
 				System.out.println("Enter new model:");
-				all_Vehicles[index].setModel(kb.nextLine());
+				all_Vehicles[index].setModel(scanner.nextLine());
 				break;
 			case 3:
 				System.out.println("Enter new year of production:");
-				all_Vehicles[index].setYear_Of_Production(kb.nextInt());
-				kb.nextLine();
+				all_Vehicles[index].setYear_Of_Production(scanner.nextInt());
+				scanner.nextLine(); // Consume the newline character
 				break;
 			case 4:
 				if (vehicleToUpdate instanceof Cars) {
 					System.out.println("Enter new maximum passengers");
-					((Cars) all_Vehicles[index]).setMaxPassengers(kb.nextInt());
+					((Cars) all_Vehicles[index]).setMaxPassengers(scanner.nextInt());
 				} else if (vehicleToUpdate instanceof Truck) {
 					System.out.println("Enter new max weight capacity:");
-					((Truck) all_Vehicles[index]).setMaxWeightCapacity(kb.nextInt());
+					((Truck) all_Vehicles[index]).setMaxWeightCapacity(scanner.nextInt());
 				}
-				kb.nextLine();
+				scanner.nextLine(); // Consume the newline character
 				break;
 			case 5:
 				if (vehicleToUpdate instanceof Electric_Car) {
 					System.out.println("Enter new max autonomy range:");
-					((Electric_Car) all_Vehicles[index]).setMax_Range(kb.nextInt());
+					((Electric_Car) all_Vehicles[index]).setMax_Range(scanner.nextInt());
 				} else if (vehicleToUpdate instanceof Electric_Truck) {
 					System.out.println("Enter new max autonomy range:");
-					((Electric_Truck) all_Vehicles[index]).setMaxAutonomyRange(kb.nextInt());
+					((Electric_Truck) all_Vehicles[index]).setMaxAutonomyRange(scanner.nextInt());
 				} else if (vehicleToUpdate instanceof Diesel_Truck) {
 					System.out.println("Enter new max fuel capacity:");
-					((Diesel_Truck) all_Vehicles[index]).setfuelCapacity(kb.nextDouble());
+					((Diesel_Truck) all_Vehicles[index]).setfuelCapacity(scanner.nextDouble());
 				}
-				kb.nextLine();
+				scanner.nextLine(); // Consume the newline character
 				break;
 			default:
 				System.out.println("Not a valid input, returning to main menu");
 				return;
 		}
 
+		// Confirm that the vehicle has been successfully updated
 		System.out.println("Vehicle successfully updated");
-
 	}
 
-	public static void listAllVehicles(Scanner kb) {
-		if(vehicleCount == 0){
+	// Method to list all vehicles by category
+	public static void listAllVehicles(Scanner scanner) {
+		// Check if there are any vehicles in the system
+		if (vehicleCount == 0) {
 			System.out.println("No Vehicles in the system");
 			return;
 		}
 
+		// List all Electric Cars
 		System.out.println("Electric Cars: ");
-		for(int i = 0; i < vehicleCount; i++){
-			if(all_Vehicles[i] instanceof Electric_Car){
+		for (int i = 0; i < vehicleCount; i++) {
+			if (all_Vehicles[i] instanceof Electric_Car) {
 				System.out.println(all_Vehicles[i]);
 			}
 		}
 
+		// List all Gasoline Cars
 		System.out.println("Gasoline Cars: ");
-		for(int i = 0; i < vehicleCount; i++){
-			if(all_Vehicles[i] instanceof Gasoline_Car){
+		for (int i = 0; i < vehicleCount; i++) {
+			if (all_Vehicles[i] instanceof Gasoline_Car) {
 				System.out.println(all_Vehicles[i]);
 			}
 		}
 
+		// List all Electric Trucks
 		System.out.println("Electric Trucks: ");
-		for(int i = 0; i < vehicleCount; i++){
-			if(all_Vehicles[i] instanceof Electric_Truck){
+		for (int i = 0; i < vehicleCount; i++) {
+			if (all_Vehicles[i] instanceof Electric_Truck) {
 				System.out.println(all_Vehicles[i]);
 			}
 		}
 
+		// List all Diesel Trucks
 		System.out.println("Diesel Trucks: ");
-		for(int i = 0; i < vehicleCount; i++){
-			if(all_Vehicles[i] instanceof Diesel_Truck){
+		for (int i = 0; i < vehicleCount; i++) {
+			if (all_Vehicles[i] instanceof Diesel_Truck) {
 				System.out.println(all_Vehicles[i]);
 			}
 		}
 	}
-
 
 }
