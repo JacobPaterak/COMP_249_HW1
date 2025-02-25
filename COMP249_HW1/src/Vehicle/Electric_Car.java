@@ -1,5 +1,8 @@
 package Vehicle;
-
+//assignment 1
+//Jacob Paterak 40268958
+//Vehicle managment
+//this class represents an electric car with getters, setters,copy contructor, toString and equals methods
 public class Electric_Car extends Cars
 {
 	//variables
