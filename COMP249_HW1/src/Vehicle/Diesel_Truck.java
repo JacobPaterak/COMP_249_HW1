@@ -2,7 +2,7 @@ package Vehicle;
 
 public class Diesel_Truck extends Truck{
     
-    private static int dieselTruckCounter = 1000;
+    private static int dieselTruckCounter = 1001;
     private double fuelCapacity;
     private String plateNumber;
 

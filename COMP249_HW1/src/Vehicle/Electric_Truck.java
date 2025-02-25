@@ -3,7 +3,7 @@ package Vehicle;
 public class Electric_Truck extends Truck{
 
     private double maxAutonomyRange;
-    private static int electricTruckCounter = 1000;
+    private static int electricTruckCounter = 1001;
     private String plateNumber;
 
     //Default Constructor
