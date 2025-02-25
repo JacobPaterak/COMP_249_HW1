@@ -8,18 +8,21 @@ public class Electric_Car extends Cars
 	
 	public Electric_Car(){
 		super();	
-		this.Max_Autonomy_Range = 15.0;	
+		this.Max_Autonomy_Range = 15.0;
+		this.plate_number = 1000 + counter;
+		counter++;
 	}
 
 	public Electric_Car(String Make, String Model, int YOP,int Max_People ,double Max_Range){
 		super(Make,Model,YOP,Max_People);
 		this.Max_Autonomy_Range = Max_Range;
+		this.plate_number = 1000 + counter;
+		counter++;
 	}
 
 	public void setMax_Range(double Max_Range){
 		this.Max_Autonomy_Range = Max_Range;
 	}
-
 	public double getMax_Autonomy_Range(){
 		return this.Max_Autonomy_Range;
 	}
@@ -29,15 +32,14 @@ public class Electric_Car extends Cars
 		return super.toString() + ", Max Autonomy Range: " +  this.Max_Autonomy_Range + ", Plate Number: "+ this.plate_number;
 
 	}
-
 	public Electric_Car(Electric_Car obj){
 		super(obj);
 		this.Max_Autonomy_Range = obj.getMax_Autonomy_Range();
+		this.plate_number = 1000 + counter;
+		counter++;
 	}
 
 	public String getPlate_Num(){
-		this.plate_number = 1000 + counter;
-		counter++;
 		return "EC" + this.plate_number;
 	}
 
