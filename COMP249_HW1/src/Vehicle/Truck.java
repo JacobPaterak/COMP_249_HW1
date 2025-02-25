@@ -3,7 +3,7 @@ package Vehicle;
 /*
  * Assignment 1
  * Question: Vehicle Management System - Truck Class
- * Written by: Augustin Redon 40240986 - Jacob
+ * Written by: Augustin Redon 40240986 
  *
  * This class represents a Truck, which is a subclass of Vehicles.
  * It includes attributes, constructors, and methods specific to trucks,
